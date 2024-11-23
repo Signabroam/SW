@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="getout.css">
+  <title>Signabroam Wheather Information - NOAA</title>
+</head>
+<style>
+  /* Style the search box */
+#mySearch {
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+}
+
+/* Style the navigation menu */
+#myMenu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* Style the navigation links */
+#myMenu li a {
+  padding: 12px;
+  text-decoration: none;
+  color: white;
+  display: block
+}
+
+#myMenu li a:hover {
+  background-color: darkslategray;
+}
+</style>
+
+<body>
+  <header>
+    <div class="logo">
+      <h1>Signabroam Wheather Information</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="http://websdr.org">WebSDR</a> <a href="http://rx.kiwisdr.com">KiwiSDR</a> <a href="http://openwebrx.de">OpenWebrx</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://www.swpc.noaa.gov/content/data-access">SPWC</a> <a href="https://www.noaa.gov/">NOAA</a></li>
+      </ul>
+    </nav>
+  </header>
+  <br>
+  <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+
+<ul id="myMenu">
+  <li><a href="https://services.swpc.noaa.gov/images/drap_global.png">Global Geophysical</a></li>
+  <li><a href="https://services.swpc.noaa.gov/images/aurora-forecast-northern-hemisphere.jpg">Aurora North hemisphere</a></li>
+  <li><a href="https://services.swpc.noaa.gov/images/drap_f05_n-pole.png">Geophysical (North pole)</a></li>
+  <li><a href="https://services.swpc.noaa.gov/images/animations/lasco-c2/latest.jpg">Lastest solar wind view</a></li>
+  <li><a href="https://services.swpc.noaa.gov/images/animations/wam-ipe/wrs_neutral/WRS_WAM05_GLOBAL_DEN400-ON2-DEN400_20241009T1500_20241009T1620.png">Neutral atmosphere</a></li>
+  <li><a href="https://services.swpc.noaa.gov/images/animations/wam-ipe/ionosphere/WFS_IPE05_GLOBAL_TEC-MUF-TEC-MUF_20230802T0600_20230804T0400.png">Ionosphere view</a></li>
+  <li><a href="https://services.swpc.noaa.gov/text/wwv.txt">HF Conditions</a></li>
+  <li><a href="https://services.swpc.noaa.gov/text/solar_radio_flux.txt">Solar Radio flux</a></li>
+  <li><a href="https://www.spaceweather.gov/products/real-time-solar-wind">Real time solar wind</a></li>
+  <li><a href="https://services.swpc.noaa.gov/images/drap_f30_global.png">F30 X-RAY</a></li>
+  <li><a href="https://www.hamqsl.com/solar101vhfpic.php">Solar Terrestrial Data</a></li>
+  <li><a href="https://www.hamqsl.com/solarmuf.php">Solar Sunlit Map/Muf</a></li>
+  <li><a href="https://www.hamqsl.com/marston.php">Ham Marston</a></li>
+  <li><a href="https://www.solarham.com/">Solarham.com</a></li>
+</ul>
+ <br>
+ <h3>Main page <a href="index.html">Signabroam</a></h3>
+</body>
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("mySearch");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myMenu");
+  li = ul.getElementsByTagName("li");
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+</html>

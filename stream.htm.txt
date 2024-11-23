@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<title>get out of here please</title>
+<iframe src="./4625waterfall.html" style="position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: 2; /* L'iframe est au-dessus du texte *" />

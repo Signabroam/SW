@@ -1,0 +1,74 @@
+[
+  {
+    "name": "iWebSDR at the University of Twente, Enschede, NL",
+    "url": "http://websdr.ewi.utwente.nl:8901/",
+    "img": "http://websdr.ewi.utwente.nl:8901/utlogo48.gif",
+    "count": "1"
+  },
+  {
+    "name": "WebSDR Maasbree Netherlands (Low): rural low noise level, 160m/80m/60m/40m/30m/20m/17m/15m band, CW segments included",
+    "url": "http://sdr.websdrmaasbree.nl:8901/",
+    "img": "http://sdr.websdrmaasbree.nl:8901/favicon.gif",
+    "count": "2"
+  },
+  {
+    "name": "* RD3MK * Yaroslavl * Regional branch of the Union of Radio Amateurs of Russia",
+    "url": "http://websdr.srr76.ru/",
+    "img": "http://websdr.srr76.ru/rd3mk.png",
+    "count": "3"
+  },
+  {
+    "name": "Little Paradise Farm - Pardinho - Brazil",
+    "url": "http://appr.org.br:8905/",
+    "img": "http://appr.org.br:8905/brasil.jpg",
+    "count": "4"
+  },
+  {
+    "name": "BATC & AMSAT-UK QO-100 (Es'Hail-2) Geostationary Satellite WebSDR",
+    "url": "http://eshail.batc.org.uk:8901/",
+    "img": "http://eshail.batc.org.uk:8901/project-logo.jpg",
+    "count": "5"
+  },
+  {
+    "name": "U.S.S.R. pirate Band “Troyka”. 2900...3200 kHz.",
+    "url": "http://3.radiorubka.org/",
+    "img": "http://3.radiorubka.org/logo1.gif",
+    "count": "6"
+  },
+  {
+    "name": "Northern Utah WebSDR, Corinne, Utah, U.S.A. - WebSDR #1 (Yellow) - Landing Page",
+    "url": "http://websdr1.sdrutah.org:8901/",
+    "img": "http://websdr1.sdrutah.org:8901/Utah_SDR_Logo_48x48.gif",
+    "count": "7"
+  },
+  {
+    "name": "- Ham - Bordeaux (France) 80m / 40m / 20m / 15m / 10m / 144 Mhz / 433 Mhz / Es Hail-2 ; QO-100 Satellite geostationnaire 26 Est",
+    "url": "http://ham.websdrbordeaux.fr:8000/",
+    "img": "http://ham.websdrbordeaux.fr:8000/drapeau.gif",
+    "count": "8"
+  },
+  {
+    "name": "Northern Utah WebSDR, Corinne, Utah, U.S.A. - WebSDR #2 (Green) - Landing Page",
+    "url": "http://websdr2.sdrutah.org:8902/",
+    "img": "http://websdr2.sdrutah.org:8902/Utah_SDR_Logo_48x48.gif",
+    "count": "9"
+  },
+  {
+    "name": "Home of the original K3FEF/W3TKP WebSDR in Milford, Pennsylvania, NE USA. 160/80/40/30/20/17/11/10/6!",
+    "url": "http://websdr.k3fef.com:8901/",
+    "img": "http://websdr.k3fef.com:8901/mylogo.jpg",
+    "count": "10"
+  },
+    {
+      "name": "\" SAN JUAN, ARGENTINA / LU6PSG",
+      "url": "http://lu6psg.ddns.net/",
+      "img": "http://lu6psg.ddns.net/escudo.gif",
+      "count": "11"
+    },
+    {
+      "name": "SDR receiver in Russia, near Chelyabinsk city",
+      "url": "http://sdr.r9a.ru/",
+      "img": "http://sdr.r9a.ru/logo.jpg",
+      "count": "12"
+    }
+]

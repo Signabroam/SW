@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="getout.css">
+  <title>Radio Player</title>
+</head>
+
+<body>
+  <header>
+        <div class="logo">
+            <h1>Signabroam</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="http://websdr.org">WebSDR</a> <a href="http://rx.kiwisdr.com">KiwiSDR</a> <a href="http://openwebrx.de">OpenWebrx</a></li>
+            </ul>
+        </nav>
+    </header>
+    <br>
+ <section class="content">
+          <h3>Radio player</h3>
+          <section class="cube">
+<!-- Sélection de fichiers audio avec un select -->
+<div>
+  <h3>Radio doesn't work? <br>Edit the site link from https to http</h3>
+    <label for="audioSelect">Select a station:</label>
+    <select id="audioSelect" onchange="playAudio(this.value)">
+        <option value="" disabled selected>Choose a station</option>
+        <option value="" disabled>> Shortwave & Number stations</option>
+        <option value="http://stream.priyom.org:8000/buzzer">UZB-76</option>
+        <option value="http://stream.priyom.org:8000/pip-day.ogg">The PIP Day</option>
+        <option value="http://stream.priyom.org:8000/pip-night.ogg">The PIP Night</option>
+        <option value="http://stream.priyom.org:8000/wheel-day.ogg">The Squeaky Wheel Day</option>
+        <option value="http://stream.priyom.org:8000/wheel-night.ogg">The Squeaky Wheel Night</option>
+        <option value="" disabled>> FM/ONLINE Radio</option>
+        <option value="http://manager8.streamradio.fr:1930/stream">Online Radio (FR)</option>
+        <option value="https://cast.iplayradio.net/listen/powermixfm/stream">PowerMixFM</option>
+        <option value="https://air.racyja.com/pinsk">SVOYO (RUS)</option>
+        <option value="https://air.racyja.com/racja96">Racja (BL-RUS)</option>
+        <option value="https://manager6.streamradio.fr:2735/stream">Radio Le Zoo (FR) (Take 5 seconds to load)</option>
+        <option value="https://radiouji.uji.es:8443/high.ogg">UJI</option>
+        <option value="http://rustradio.org:9000/stream.ogg">Rust (FR)</option>
+        <option value="http://radio-active.net:8000/active">Associative de l'aire toulonnaise (FR)</option>
+        <option value="http://radio.linn.co.uk:8003/autodj">Linn (Take 5 seconds to load)</option>
+        <option value="http://icecast.infini.fr:8000/mutine">Mutine (FR)</option>
+        <option value="http://stream.radios-arra.fr:8000/contactfm">ContactFM (FR)</option>
+        <option value="http://stream.radios-arra.fr:8000/fmplus">FM+ (FR)</option>
+    </select>
+</div>
+
+<!-- Input range pour le volume de l'audio -->
+<div>
+    <label for="volumeControl">Volume</label>
+    <input type="range" id="volumeControl" min="0" max="1" step="0.001" value="1" oninput="setVolume(this.value)">
+    <input type="checkbox" id="muteControl" onchange="toggleMute(this.checked)"> <label for="muteControl">Mute</label>
+</div>
+
+<!-- Barre de lecture en bas de la page -->
+<div id="nowPlaying" style="bottom: 0; width: 100%; background-color: #222; color: white; padding: 10px; text-align: center; border-radius: 15px;">
+    <span id="stationName">Station: None</span> <br />
+    <span id="currentTrack">Currently: None</span>
+</div>
+
+          </section>
+        </section>
+        
+    <script src="rdplay.js"></script>
+</body>
+
+</html>

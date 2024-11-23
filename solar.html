@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Données Solaires</title>
+    <style>
+        #solar-info {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .field {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+        .field-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="solar-info">
+    <div id="desc1" class="field"></div>
+    <div id="desc2" class="field"></div>
+    <div id="desc3" class="field"></div>
+    <div id="desc4" class="field"></div>
+    <div id="desc5" class="field"></div>
+</div>
+
+<script>
+    const apiUrl = 'https://www.hamqsl.com/solarrss.php';
+    const allOriginsUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
+
+    // Fonction pour récupérer et afficher les données
+    function fetchData() {
+        fetch(allOriginsUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur réseau : ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const parser = new DOMParser();
+                const xmlData = parser.parseFromString(data.contents, "text/xml");
+
+                // Récupérer les informations de signal noise, MUF et aurora
+                const signalNoiseElement = xmlData.querySelector('signalnoise');
+                const mufElement = xmlData.querySelector('muf');
+                const auroraElement = xmlData.querySelector('aurora');
+
+                const signalNoise = signalNoiseElement ? signalNoiseElement.textContent : 'N/A';
+                const muf = mufElement ? mufElement.textContent : 'N/A';
+                const aurora = auroraElement ? auroraElement.textContent : '0'; // par défaut 0 si pas de valeur
+
+                // Mettre à jour le contenu des éléments avec les valeurs récupérées
+                updateElement('desc1', 'Signal Noise: ' + signalNoise);
+                updateElement('desc2', 'MUF: ' + muf);
+                updateElement('desc5', 'Aurora power: G' + aurora);
+
+                // Appeler la fonction pour mettre à jour les couleurs en fonction des valeurs récupérées
+                updateColors(signalNoise, muf, aurora);
+
+                // Récupérer et afficher les données pour 80m-40m day et night
+                const bandDay = xmlData.querySelector('band[name="80m-40m"][time="day"]');
+                const bandNight = xmlData.querySelector('band[name="80m-40m"][time="night"]');
+
+                const bandDayValue = bandDay ? bandDay.textContent.trim().toLowerCase() : 'N/A';
+                const bandNightValue = bandNight ? bandNight.textContent.trim().toLowerCase() : 'N/A';
+
+                updateElement('desc3', '80m Day: ' + bandDayValue);
+                updateElement('desc4', '80m Night: ' + bandNightValue);
+
+                // Appliquer les couleurs aux bandes de jour et de nuit
+                applyBandColor(bandDayValue, document.getElementById('desc3'));
+                applyBandColor(bandNightValue, document.getElementById('desc4'));
+            })
+            .catch(error => {
+                console.error("Erreur lors de la récupération des données :", error);
+            });
+    }
+
+    // Appel initial pour récupérer les données au chargement de la page
+    fetchData();
+
+    // Recharger les données toutes les 60 secondes (60000 millisecondes)
+    setInterval(fetchData, 60000);
+
+    // Fonction pour mettre à jour les éléments HTML
+    function updateElement(elementId, content) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.innerHTML = content; // Met à jour directement le contenu
+        } else {
+            console.error(`L'élément avec l'ID '${elementId}' n'existe pas.`);
+        }
+    }
+
+    // Fonction pour mettre à jour les couleurs en fonction de signalNoise, MUF et Aurora
+    function updateColors(signalNoise, muf, aurora) {
+        const desc1Element = document.getElementById('desc1');
+        if (desc1Element) {
+            switch (signalNoise.toLowerCase().trim()) {
+                case 's0-s1':
+                    desc1Element.style.color = 'cyan';
+                    break;
+                case 's1-s2':
+                    desc1Element.style.color = 'aquamarine';
+                    break;
+                case 's2-s3':
+                    desc1Element.style.color = 'yellow';
+                    break;
+                case 's3-s4':
+                    desc1Element.style.color = 'orange';
+                    break;
+                case 's4-s5':
+                    desc1Element.style.color = 'orangered';
+                    break;
+                case 's5':
+                    desc1Element.style.color = 'red';
+                    break;
+                default:
+                    desc1Element.style.color = 'white';
+            }
+        }
+
+        const desc2Element = document.getElementById('desc2');
+        if (desc2Element) {
+            desc2Element.style.color = (muf === 'NoRpt') ? 'greenyellow' : 'orange';
+        }
+
+        const desc5Element = document.getElementById('desc5');
+        if (desc5Element) {
+            switch (parseInt(aurora, 10)) {
+                case 1:
+                    desc5Element.style.color = 'lime';
+                    break;
+                case 2:
+                    desc5Element.style.color = 'yellow';
+                    break;
+                case 3:
+                    desc5Element.style.color = 'orange';
+                    break;
+                case 4:
+                    desc5Element.style.color = 'red';
+                    break;
+                case 5:
+                    desc5Element.style.color = 'darkred';
+                    break;
+                default:
+                    desc5Element.style.color = 'white'; // Valeur par défaut pour aurora 0 ou autres
+            }
+        }
+    }
+
+    // Fonction pour appliquer les couleurs aux bandes en fonction des valeurs poor, fair, good
+    function applyBandColor(bandValue, element) {
+        if (element) {
+            if (bandValue === 'poor') {
+                element.style.color = 'orangered';
+            } else if (bandValue === 'fair') {
+                element.style.color = 'yellow';
+            } else if (bandValue === 'good') {
+                element.style.color = 'lawngreen';
+            } else {
+                element.style.color = 'white'; // Couleur par défaut si aucune valeur ne correspond
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

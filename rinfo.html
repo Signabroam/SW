@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Right infobar</title>
+</head>
+<style type="text/css" media="all">
+  body, html {
+                margin: 0;
+                padding: 0;
+            }
+
+            #main {
+                font-family: 'Cantarell';
+            }
+
+            #MSKTime, #dateMSK, #ttl, #desc1, #desc2, #desc3, #desc4, #info1, #shortwaveStuff, #dateUTC, #socialText, #socialImg, #faq, #timer, #clockMSK, #UTCTime, #MSKTime, #fa2q, #aurora, #abt {
+                z-index: 100;
+                position: absolute;
+                color: white;
+                font-size: 42px;
+                font-weight: bold;
+            }
+
+            #abt { left: 10px; top: 10px; font-size: 30px; }
+            #ttl { left: 23px; top: 50px; }
+
+            #desc1 { left: 20px; top: 120px; font-size: 35px; }
+            
+            img#infox { width: 200px; top: 10px; }
+            #desc2 { left: 20px; top: 170px; font-size: 35px; }
+            #aurora { width: 300px; top: 250px; left: 20px; }
+            #desc3 { left: 20px; top: 530px; font-size: 25px; }
+            #desc4 { left: 20px; top: 570px; font-size: 35px; }
+
+            #info1 { left: 30px; top: 630px; font-size: 23px; }
+            #timer { left: 20px; top: 650px; font-size: 30px; }
+
+            #socialImg { left: 30px; top: 975px; font-size: 50px; }
+            #socialText { left: 30px; top: 935px; font-size: 50px; }
+
+            #faq { left: 10px; top: 1035px; font-size: 20.5px; }
+
+            @keyframes fade {
+                0%   { opacity: 1; }
+                100% { opacity: 0; }
+            }
+            #socialText, #socialImg {
+                animation-name: fade;
+                animation-duration: 0.5s;
+                animation-timing-function: cubic-bezier(1,0,0,1);
+            }
+            #socialText, #socialImg { animation-direction: reverse;  }
+            
+            #muf {
+              color: white;
+            }
+            
+            p#fa2q {
+              left: 20px;
+              top: 590px;
+              font-size: 30px;
+              text-decoration: underline
+            }
+            h1#fa2q {
+              left: 20px;
+              top: 520px;
+              font-size: 50px
+            }
+            
+            #currentFrequency { color: dodgerblue; }
+            #autoreload { color: lime }
+            #infobar { color: orangered }
+</style>
+
+<body>
+  <img src="thing.png" alt="thing.png" id="font">
+  <h1 id="abt">This infobar is still in development!</h1>
+  <h1 id="ttl">Latest Solar Data</h1>
+  <h1 id="desc1">Solar X-Ray: <img src="https://www.n3kl.org/sun/images/status.gif" id="infox"></h1>
+  <h1 id="desc2">Geomagnetic Field: <img src="https://www.n3kl.org/sun/images/kpstatus.gif" id="infox"></h1>
+  <img src="https://services.swpc.noaa.gov/images/animations/ovation/north/latest.jpg" id="aurora">
+  <p id="desc3">The information provided is mostly accurate.</p>
+  <h1 id="desc4">Current Frequency: <span id="currentFrequency">-- kHz</span></h1>
+  <p id="info1">> Things I use for UVB-76<br>
+    Autoreload: <id id="autoreload">KeamsOS AutoReload V4.1 Experimental</id><br>
+    Infobar: 1 <id id="infobar">@ShorwaveStuff</id> & 2 <id id="infobar">@MirossOffYT</id><br>
+    Software: Streamlabs using a Xiaomi 11I<br>
+    ~ More information in the description ~</p>
+ <footer id="faq">
+   Inforbar by MirossOffYT, Inspired by The SWL Channel
+ </footer>
+  <script>
+    // Configuration des fréquences avec leurs plages horaires
+    const frequencies = [
+      { start: "00:00", end: "12:00", frequency: "4625 kHz" },
+      { start: "12:00", end: "00:00", frequency: "4625 kHz" },
+      // Ajouter d'autres plages ici si nécessaire
+    ];
+
+    // Fonction pour obtenir l'heure actuelle sous format "HH:MM"
+    function getCurrentTime() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes}`;
+    }
+
+    // Fonction pour déterminer si l'heure actuelle est dans une plage horaire donnée
+    function isCurrentTimeInRange(start, end) {
+      const currentTime = getCurrentTime();
+      
+      // Si la plage horaire est sur deux jours (par exemple, 20h00 à 04h00)
+      if (end < start) {
+        return currentTime >= start || currentTime < end;
+      }
+      // Sinon, plage horaire normale dans la même journée
+      return currentTime >= start && currentTime < end;
+    }
+
+    // Fonction pour mettre à jour la fréquence affichée en fonction de l'heure
+    function updateFrequency() {
+      let currentFrequency = "-- kHz"; // Fréquence par défaut
+
+      // Parcourir les plages horaires pour trouver la fréquence correspondante
+      frequencies.forEach(function(range) {
+        if (isCurrentTimeInRange(range.start, range.end)) {
+          currentFrequency = range.frequency;
+        }
+      });
+
+      // Mettre à jour l'affichage
+      document.getElementById('currentFrequency').innerText = currentFrequency;
+    }
+
+    // Mettre à jour la fréquence dès le chargement de la page
+    updateFrequency();
+
+    // Recharger la fréquence toutes les minutes (60000 ms)
+    setInterval(function() {
+      updateFrequency();
+    }, 60000);
+
+  </script>
+</body>
+</html>

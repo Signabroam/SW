@@ -1,0 +1,302 @@
+body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: white;
+            z-index: 0;
+            background-image: url("bak.png");
+        }
+        h1 {
+            color: white;
+        }
+        select {
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 15px;
+            border-radius: 5px;
+            width: calc(100% - 30px);
+            background-color: transparent;
+            color: white;
+        }
+        #searchBar, #searchWebSDR, #searchOpenWebRX {
+            margin-bottom: 20px;
+            width: calc(100% - 50px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+        }
+        #resultsKiwi, #resultsWebSDR, #resultsOpenWebRX {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: calc(100% - 30px);
+        }
+        .sdr-item {
+            border: 1px solid #ccc;
+            padding: 15px;
+            cursor: pointer;
+            text-align: left;
+            border-radius: 5px;
+            background-color: rgba(1000, 1000, 1000, 0.80); /* Noir avec 30% de transparence */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        .sdr-item img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .sdr-item:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        /* Modal styles */
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #sdrIframe {
+            width: calc(100% - 40px);
+            height: calc(100% - 40px);
+            border: none;
+            border-radius: 8px;
+            z-index: 2;
+        }
+        #closeModal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background-color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            z-index: 1001;
+            width: 30px;
+        }
+        button {
+          background-color: transparent;
+          border: 0px;
+          width: 100%;
+        }
+        #floatingIframeContainer {
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border: 2px solid #333;
+    border-radius: 8px;
+    overflow: auto;
+    z-index: 1001;
+    resize: both;
+    cursor: se-resize;
+}
+        #floatingIframeContainer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        #floatingIframeContainer .closeButton {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 25px;
+            height: 25px;
+            font-weight: bold;
+        }
+        /* Bouton d'ouverture */
+        #openIframeButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #0645AD;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            width: 300px;
+            height: 40px;
+            z-index: 3000;
+        }
+        .button-container {
+            position: fixed;
+            top: 10px;
+            left: 115px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 3000;
+        }
+        .button-containe2 {
+            position: fixed;
+            top: 10px;
+            left: 215px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 3000;
+        }
+        .button-containe2 button {
+            padding: 5px 10px;
+            font-size: 10px;
+            width: 100px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background-color: #0645AD;
+            color: white;
+            z-index: 3000;
+        }
+        .button-container button {
+            padding: 5px 10px;
+            font-size: 10px;
+            width: 100px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background-color: #0645AD;
+            color: white;
+            z-index: 3000;
+        }
+        /* Styles pour le bloc-notes */
+        #notePad, #iframeModal {
+            display: none;
+            position: fixed;
+            top: 50px;
+            left: 100px;
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            z-index: 4000;
+            resize: both;
+            overflow: auto;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        #notePad textarea {
+            width: 100%;
+            height: calc(100% - 20px);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .close-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #ff5f57;
+            border: none;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        /* Styles pour l'iframe modale */
+        #iframeModal iframe {
+    width: 100%;
+    height: 100%; /* Ajuster la hauteur pour s’adapter au contenu sans zoom */
+    border: none;
+    border-radius: 5px;
+}
+    .\dragHandle {
+    cursor: move;
+    background-color: #0645AD;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 1px solid #333;
+    border-radius: 8px 8px 0 0;
+    user-select: none;
+    top: 500px;
+}
+       .button-contain {
+            position: fixed;
+            top: 10px;
+            left: 315px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 3000;
+        }
+       .button-contain button {
+            padding: 5px 10px;
+            font-size: 10px;
+            width: 100px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background-color: #0645AD;
+            color: white;
+            z-index: 3000;
+        }
+        /* Styles pour la modale */
+        #imageModal {
+            display: none;
+            position: fixed;
+            top: 50px;
+            left: 100px;
+            width: 100px;
+            height: 300px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            z-index: 4000;
+            resize: both;
+            overflow: auto;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        #imageModal img {
+            width: 100%;
+            height: auto;
+        }
+        .close-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #ff5f57;
+            border: none;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        #resourceSelector {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    width: calc(100% - 30px);
+    background-color: transparent;
+}
