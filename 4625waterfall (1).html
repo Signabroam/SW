@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>KeamsOS Autoreload 4.1 Experimental</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        #reloadText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00FF00; /* Couleur verte lumineuse pour meilleure visibilité */
+            font-size: 3rem;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            z-index: 1; /* Texte en arrière-plan */
+            opacity: 0.8; /* Opacité augmentée pour meilleure visibilité */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ombre du texte pour contraster avec le fond */
+        }
+
+        #reloadInfo {
+            font-size: 1.5rem;
+            color: #FFFF00; /* Jaune vif pour le texte d'information */
+        }
+
+        iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 130%; /* Agrandir l'iframe pour permettre plus de détails */
+    height: 300%; /* Ajustez ces valeurs selon l'effet de zoom souhaité */
+    border: none;
+    z-index: 2;
+    transform: scale(0.7); /* Applique un dézoom de 80% */
+    transform-origin: 0 0; /* Ancre le dézoom en haut à gauche */
+}
+
+    </style>
+</head>
+<body>
+
+<div id="reloadText">
+    KeamsOS AutoReload V4.1 Experimental
+    <div id="reloadInfo">reloading SDR</div>
+</div>
+
+<iframe id="webFrame" src=""></iframe>
+
+<script>
+    const baseUrls = [
+        "http://kiwi-kuo.aprs.fi:8073/?user=MirossOffYT&f=4625usb&pb=0,3500&u=Keams_User&no_geoloc&keys=sxyyy&z=12&peak&wf=fast",         
+        "http://oh3aa.dy.fi:18073/?user=MirossOffYT&f=4625usb&pb=0,3500&no_geoloc&keys=sxyyy&z=12&peak&wf=fast",              
+        "http://kiwi-vih.aprs.fi:8073/?user=MirossOffYT&f=4625usb&pb=0,3500&u=Keams_User&no_geoloc&keys=sxyyy&z=12&peak&wf=fast",
+        "http://rka.proxy.kiwisdr.com:8073/?user=MirossOffYT&f=4625usb&pb=0,3500&no_geoloc&keys=sxyyy&z=12&peak&wf=fast",
+        "http://sdxl-loh.ddns.net:8073/?user=MirossOffYT&f=4625usb&pb=0,3500&u=Keams_User&no_geoloc&keys=sxyyy&z=12&peak&wf=fast",
+        "http://g8ure.ddns.net:8075/?user=MirossOffYT&f=4625usb&pb=0,3500&u=Keams_User&no_geoloc&keys=sxyyy&z=12&peak&wf=fast",
+        "http://21373.proxy.kiwisdr.com:8073/?user=MirossOffYT&f=4625usb&pb=0,3500&u=Keams_User&no_geoloc&keys=sxyyy&z=12&peak&wf=fast"
+    ];
+
+    const iframe = document.getElementById('webFrame');
+    const reloadInfo = document.getElementById('reloadInfo');
+    let countdownTimer;
+
+    function getRandomId() {
+        return String(Math.floor(Math.random() * 9999) + 1).padStart(2, '0');
+    }
+
+    async function getCountry() {
+        try {
+            const response = await fetch('http://ip-api.com/json');
+            const data = await response.json();
+            return data.country || 'Unknown';
+        } catch (error) {
+            console.error('Error fetching country data:', error);
+            return 'Unknown';
+        }
+    }
+
+    async function sendToWebhook(userId, country, url) {
+        const webhookUrl = 'https://discord.com/api/webhooks/1290067906293403801/ZeOEYeqySwpJXK5DwoDlt3axhRgwYXAGykSXyR8x9ApdJAM02aDN_P74AhXDFD1bHd6o'; // Remplacez par votre URL de webhook Discord
+        const payload = {
+            content: `Keams_User_${userId}\nCountry: ${country}\nURL: ${url}`
+        };
+        
+        try {
+            await fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+        } catch (error) {
+            console.error('Error sending to webhook:', error);
+        }
+    }
+
+    async function loadRandomPage() {
+        reloadInfo.innerText = "Loading SDR";
+        const randomIndex = Math.floor(Math.random() * baseUrls.length);
+        const randomId = getRandomId();
+        const selectedUrl = baseUrls[randomIndex].replace(/u=Keams_User/, `u=Keams_User_${randomId}`);
+        
+        const country = await getCountry();
+        await sendToWebhook(randomId, country, selectedUrl);
+        iframe.src = selectedUrl;
+    }
+
+    iframe.onload = function() {
+        startCountdown();
+    };
+
+    function startCountdown() {
+        const nextReloadTime = getNextReloadTime();
+        const remainingTime = nextReloadTime - Date.now();
+        
+        clearInterval(countdownTimer);
+        countdownTimer = setInterval(() => {
+            const timeLeft = Math.max(0, Math.floor((nextReloadTime - Date.now()) / 1000));
+            reloadInfo.innerText = `Next reload in ${timeLeft} seconds`;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdownTimer);
+                loadRandomPage(); // Recharger la page
+                startCountdown(); // Redémarrer le compte à rebours pour le prochain intervalle
+            }
+        }, 1000); // Décompte chaque seconde
+    }
+
+    function getNextReloadTime() {
+        const now = new Date();
+        const minutes = now.getUTCMinutes();
+        const seconds = now.getUTCSeconds();
+
+        // Calculer les minutes restantes jusqu'au prochain intervalle de 30 minutes
+        const nextHalfHour = (Math.floor(minutes / 30) + 1) * 30 % 60;
+        const nextReload = new Date(now);
+        nextReload.setUTCMinutes(nextHalfHour);
+        nextReload.setUTCSeconds(0);
+        nextReload.setUTCMilliseconds(0);
+
+        // Si l'heure suivante est déjà passée, ajouter une heure
+        if (nextHalfHour === 0 && minutes >= 30) {
+            nextReload.setUTCHours(now.getUTCHours() + 1);
+        }
+
+        return nextReload.getTime();
+    }
+
+    loadRandomPage();
+    startCountdown();
+</script>
+
+</body>
+</html>

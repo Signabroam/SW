@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="rcv.css">
+    <title>SDR Receivers</title>
+</head>
+<body>
+    <h1>SDR Receivers 2.0</h1>
+    <select id="sdrSelector">
+        <option value="kiwi">KiwiSDR</option>
+        <option value="websdr">WebSDR</option>
+        <option value="openwebrx">OpenWebRX</option>
+    </select>
+
+    <!-- Barre de recherche pour KiwiSDR -->
+    <input type="text" id="searchBar" placeholder="Search for KiwiSDR..." />
+
+    <div id="resultsKiwi"></div>
+
+    <!-- Barre de recherche pour WebSDR -->
+    <input type="text" id="searchWebSDR" placeholder="Search for WebSDR..." style="display: none;" />
+    <div id="resultsWebSDR" style="display: none;"></div>
+
+    <!-- Barre de recherche pour OpenWebRX -->
+    <input type="text" id="searchOpenWebRX" placeholder="Search for OpenWebRX..." style="display: none;" />
+    <div id="resultsOpenWebRX" style="display: none;"></div>
+
+    <!-- Modal pour afficher l'iframe -->
+    <div id="modal">
+      <select id="openIframeButton" onchange="handleSelectChange(this)">
+  <option value="" disabled selected>Extensions: Choose an action</option>
+  <option value="priyom">Open Priyom.org</option>
+  <option value="notepad">Notes</option>
+  <option value="home">Open Signabroam</option>
+  <option value="sigidwiki">Open SigidWiki</option>
+  <option value="solar">Solar Conditions</option>
+  <option value="irc">Open PriyomIRC Chat</option>
+  <option value="google">Open google</option>
+  <option value="rdr">Open RadioReference</option>
+  <option value="rw">Open RadioWiki</option>
+  <option value="noaa">Open Noaa Website</option>
+  <option value="dc">Open Discord shortwave server</option>
+</select>
+    <button id="closeModal">X</button>
+        <iframe id="sdrIframe" src="" title="SDR Viewer"></iframe>
+            <!-- Bloc-notes flottant -->
+    <div id="notePad">
+        <button class="close-button" onclick="toggleNotePad()">X</button>
+        <textarea id="noteText" placeholder="Write here your notes..."></textarea>
+    </div>
+    </div>
+    <div id="floatingIframeContainer">
+        <button class="closeButton" onclick="toggleFloatingIframe()">×</button>
+        <iframe src="https://priyom.org" title="Priyom"></iframe>
+    </div>
+    <div id="imageModal">
+        <button class="close-button" onclick="toggleImageModal()">X</button>
+        <img src="https://www.hamqsl.com/solarn0nbh.php" alt="Image Solar Activity">
+    </div>
+    <div id="iframeModal">
+       <!-- div class="dragHandle">☰</div -->
+        <button class="close-button" onclick="toggleIframe()">X</button>
+        <iframe src=""></iframe>
+    </div>
+
+    <script src="rcv.js"></script>
+    <script>
+  function handleSelectChange(select) {
+    const value = select.value;
+
+    if (value === "priyom") {
+      openFloatingIframe('https://www.priyom.org/');
+    } else if (value === "notepad") {
+      toggleNotePad();
+    } else if (value === "sigidwiki") {
+      openFloatingIframe('https://www.sigidwiki.com/');
+    } else if (value === "solar") {
+      openImageModal();
+    } else if (value === "irc") {
+        openFloatingIframe('https://web.libera.chat/?theme=nightswatch#priyom')
+      } else if (value === "google") {
+        openFloatingIframe('https://www.google.com/webhp?igu=1')
+      } else if (value === "rdr") {
+        openFloatingIframe('https://www.radioreference.com/')
+      } else if (value === "rw") {
+        openFloatingIframe('https://www.radiowiki.org.nz/index.php/Main_Page')
+      } else if (value === "noaa") {
+        openFloatingIframe('https://services.swpc.noaa.gov/')
+      } else if (value === "home") {
+        openFloatingIframe('../index.html')
+      }
+        else if (value === "dc") {
+          openFloatingIframe('https://e.widgetbot.io/channels/1234949579569631324/1234953537746636810?theme=dark')
+        }
+
+    // Réinitialise la sélection après chaque choix
+    select.selectedIndex = 0;
+  }
+
+  function toggleNotePad() {
+    const notePad = document.getElementById('notePad');
+    notePad.style.display = notePad.style.display === 'none' || notePad.style.display === '' ? 'block' : 'none';
+  }
+
+  function openFloatingIframe(url) {
+    const iframeModal = document.getElementById('iframeModal');
+    const iframe = iframeModal.querySelector('iframe');
+    iframe.src = url;
+    iframeModal.style.display = 'block';
+  }
+
+  function toggleIframe() {
+    const iframeModal = document.getElementById('iframeModal');
+    iframeModal.style.display = 'none';
+    iframeModal.querySelector('iframe').src = '';
+  }
+
+  const noteText = document.getElementById('noteText');
+  noteText.value = localStorage.getItem('noteText') || '';
+  noteText.addEventListener('input', () => {
+    localStorage.setItem('noteText', noteText.value);
+  });
+
+  function openImageModal() {
+    document.getElementById('imageModal').style.display = 'block';
+  }
+
+  function toggleImageModal() {
+    document.getElementById('imageModal').style.display = 'none';
+  }
+</script>
+<script>
+  const resizer = document.querySelector('#floatingIframeContainer');
+  const resizable = document.querySelector('#floatingIframeContainer');
+
+resizer.addEventListener('mousedown', (e) => {
+  e.preventDefault();
+  
+  document.addEventListener('mousemove', resize);
+  document.addEventListener('mouseup', stopResize);
+});
+
+function resize(e) {
+  resizable.style.width = e.pageX - resizable.offsetLeft + 'px';
+  resizable.style.height = e.pageY - resizable.offsetTop + 'px';
+}
+
+function stopResize() {
+  document.removeEventListener('mousemove', resize);
+  document.removeEventListener('mouseup', stopResize);
+}
+</script>
+<!-- <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const floatingIframe = document.getElementById('floatingIframeContainer');
+    const dragHandle = floatingIframe.querySelector('.dragHandle');
+
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    dragHandle.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - floatingIframe.offsetLeft;
+        offsetY = e.clientY - floatingIframe.offsetTop;
+        document.body.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const x = e.clientX - offsetX;
+        const y = e.clientY - offsetY;
+
+        floatingIframe.style.left = `${x}px`;
+        floatingIframe.style.top = `${y}px`;
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            document.body.style.cursor = 'default';
+        }
+    });
+});
+</script> -->
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>KeamsOS Autoreload X Pavlova</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        #loginBox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #222;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+
+        #loginBox label, #loginBox select, #loginBox input {
+            color: white;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            font-family: 'Arial', sans-serif;
+            background-color: black;
+        }
+
+        #loginBox button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #00FF00;
+            color: black;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #reloadText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00FF00;
+            font-size: 3rem;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            z-index: 1;
+            opacity: 0.8;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        #reloadInfo {
+            font-size: 1.5rem;
+            color: #FFFF00;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: 2;
+            color: white;
+        }
+
+        #mainContent {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="loginBox">
+    <label for="frequency">Frequency:</label>
+    <input type="number" id="frequency" placeholder="Enter frequency (e.g., 4625)">
+    
+    <label for="mode">Mode:</label>
+    <select id="mode">
+        <option value="am">AM</option>
+        <option value="amn">AM Narrow</option>
+        <option value="amw">AM Wide</option>
+        <option value="sam">Sync AM</option>
+        <option value="sal">Sync AM Lower</option>
+        <option value="sau">Sync AM Upper</option>
+        <option value="sas">Sync AM Stereo</option>
+        <option value="qam">Quadrature AM</option>
+        <option value="lsb">LSB</option>
+        <option value="lsn">LSB Narrow</option>
+        <option value="usb">USB</option>
+        <option value="usn">USB Narrow</option>
+        <option value="cw">CW</option>
+        <option value="cwn">CW Narrow</option>
+        <option value="nbfm">NBFM</option>
+        <option value="nnfm">NBFM Narrow</option>
+        <option value="iq">IQ</option>
+    </select>
+    
+    <label for="region">Region:</label>
+    <select id="region">
+        <option value="#a">Asia</option>
+        <option value="#m">Europe</option>
+        <option value="#n">North America</option>
+        <option value="#p">Pacific</option>
+    </select>
+
+    <ul>
+      <li>Click <a href="http://www.eibispace.de/dx/freq-a24.txt">here</a> to visit the EIBI SW frequency calendar & logs</li>
+    </ul>
+
+    <button onclick="confirmSettings()">Confirm</button>
+</div>
+
+<div id="mainContent">
+    <div id="reloadText">
+        KeamsOS AutoReload
+        <div id="reloadInfo">reloading SDR</div>
+    </div>
+    <iframe id="webFrame" src=""></iframe>
+</div>
+
+<script>
+    const baseURL = "http://s.printf.cc/";
+
+    let selectedFrequency = null;
+    let selectedMode = null;
+    let selectedRegion = null;
+    const reloadInterval = 1800000; // 30 minutes
+    let countdownTimer;
+
+    function confirmSettings() {
+        selectedFrequency = document.getElementById('frequency').value;
+        selectedMode = document.getElementById('mode').value;
+        selectedRegion = document.getElementById('region').value;
+
+        if (selectedFrequency && selectedMode && selectedRegion) {
+            loadPage(); // Charger la page avec les paramètres
+            // Hide login box, show main content
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+
+            startCountdown();
+        } else {
+            alert("Please enter frequency, mode, and select a region.");
+        }
+    }
+
+    function loadPage() {
+        if (selectedFrequency && selectedMode && selectedRegion) {
+            const newURL = `${baseURL}${selectedRegion}/${selectedFrequency}${selectedMode}z11`;
+            document.getElementById('webFrame').src = newURL;
+        } else {
+            alert("Missing parameters.");
+        }
+        startCountdown(); // Redémarrer le compte à rebours après chaque rechargement
+    }
+
+    function startCountdown() {
+        let remainingTime = reloadInterval / 1000;
+        clearInterval(countdownTimer);
+        countdownTimer = setInterval(() => {
+            remainingTime--;
+            document.getElementById('reloadInfo').innerText = `Next reload in ${remainingTime} seconds`;
+            if (remainingTime <= 0) {
+                clearInterval(countdownTimer);
+                loadPage(); // Recharger la page à la fin du compte à rebours
+            }
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>

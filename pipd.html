@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>KeamsOS Autoreload "PIP DAY"</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        #reloadText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00FF00; /* Couleur verte lumineuse pour meilleure visibilité */
+            font-size: 3rem;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            z-index: 1; /* Texte en arrière-plan */
+            opacity: 0.8; /* Opacité augmentée pour meilleure visibilité */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ombre du texte pour contraster avec le fond */
+        }
+
+        #reloadInfo {
+            font-size: 1.5rem;
+            color: #FFFF00; /* Jaune vif pour le texte d'information */
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: 2; /* L'iframe est au-dessus du texte */
+        }
+    </style>
+</head>
+<body>
+
+<div id="reloadText">
+    KeamsOS AutoReload
+    <div id="reloadInfo">reloading SDR</div>
+</div>
+
+<iframe id="webFrame" src=""></iframe>
+
+<script>
+    const urls = [
+        "http://kiwi-kuo.aprs.fi:8073/?f=5448usbz11",         // Kuopio aprs.fi
+        "http://81.166.116.237:8073/?f=5448usbz11",           // Tjelta Norway
+        "http://80.146.82.2:8073/?f=5448usbz11",              // DL3ZID
+        "http://fsdr.duckdns.org/?f=5448usbz11",              // DuckDNS Hungary
+        "http://188.162.63.103:8073/?f=5448usbz11",           // Saratov (good for airhorn)
+        "http://oh3aa.dy.fi:18073/?f=5448usbz11",              // OH3AA (Finland)
+        "http://g8ure.ddns.net:8074/?f=5448usbz11",
+        "http://g8ure.ddns.net:8075/?f=5448usbz11",
+        "http://85.183.11.108:8074/?f=5448usbz11",
+        "http://dk1max.sytes.net:8073/?f=5448usbz11",
+        "http://sdr.autreradioautreculture.com:8074/?f=5448usbz11",
+        "http://85.183.11.108:8073/?f=5448usbz11",
+        "http://kiwisdr.sm6muy.se:55101/?f=5448usbz11",
+        "http://21595.proxy.kiwisdr.com:8073/?f=5448usbz11",
+        "http://la6lukiwisdrno.ddns.net:8073/?f=5448usbz11",
+        "http://80m.live:8077/?f=5448usbz11",
+        "http://g4wim.proxy.kiwisdr.com:8073/?f=5448usbz11",
+        "http://linkz.ddns.net:8073/?f=5448usbz11",
+        "http://okno.ddns.net:8073/?f=5448usbz11",
+        "http://sa4bna.hopto.org:8073/?f=5448usbz11",
+        "http://sauna.psokiwi.net:8073/?f=5448usbz11",
+        "http://sm4fge.ddns.net:8073/?f=5448usbz11",
+        "http://la9lt4.ddns.net:8076/?f=5448usbz11",
+        "http://sdr2.on5kq.be/?f=5448usbz11",
+        "http://sk6ag1.ddns.net:8071/?f=5448usbz11",
+        "http://kiwi.minish.org:8073/?f=5448usbz11",
+        "http://websdr.qrq.se/?f=5448usbz11",
+        "http://80m.live:8078/?f=5448usbz11",
+        "http://ko9xjv5u227qbxwa.myfritz.net:8073/?f=5448usbz11",
+        "http://21373.proxy.kiwisdr.com:8073/?f=5448usbz11",
+        "http://hanshomepa0ehg.ddns.net:8073/?f=5448usbz11",
+        "http://31.24.243.224:8073/?f=5448usbz11"
+    ];
+
+    const iframe = document.getElementById('webFrame');
+    const reloadText = document.getElementById('reloadText');
+    const reloadInfo = document.getElementById('reloadInfo');
+    const reloadInterval = 1800000; // 30 minutes
+    let countdownTimer;
+
+    function loadRandomPage() {
+        reloadInfo.innerText = "reloading SDR";
+        const randomIndex = Math.floor(Math.random() * urls.length);
+        iframe.src = urls[randomIndex];
+    }
+
+    iframe.onload = function() {
+        startCountdown();
+    };
+
+    function startCountdown() {
+        let remainingTime = reloadInterval / 1000; // Convertir en secondes
+        clearInterval(countdownTimer);
+        countdownTimer = setInterval(() => {
+            remainingTime--;
+            reloadInfo.innerText = `Next reload in ${remainingTime} seconds`;
+            if (remainingTime <= 0) {
+                clearInterval(countdownTimer);
+                loadRandomPage(); // Recharger la page à la fin du compte à rebours
+            }
+        }, 1000); // Décompte chaque seconde
+    }
+
+    loadRandomPage();
+    setInterval(loadRandomPage, reloadInterval);
+</script>
+
+</body>
+</html>

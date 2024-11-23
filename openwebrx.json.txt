@@ -1,0 +1,72 @@
+[
+  {
+    "name": " SR4DON OLSZTYN/POLAND 17m-160m",
+    "url": "https://2.websdr.jestok.com/",
+    "img": "https://www.receiverbook.de/images/604805a7f78ef13dfe45ba68/avatar.png"
+  },
+  {
+    "name": " SR4DON OLSZTYN/POLAND 70cm/2m/4m/6m/8m/10-15m",
+    "url": "https://1.websdr.jestok.com/",
+    "img": "https://www.receiverbook.de/images/604805a7f78ef13dfe45ba68/avatar.png"
+  },
+  {
+    "name": " SDRPT 2 - WebSDR VHF/UHF/CB/10m/QO100 ",
+    "url": "http://sdrpt.ddns.net:8073/",
+    "img": "https://www.receiverbook.de/images/60563dcbf78ef1e66a45ba7f/avatar.png"
+  },
+  {
+    "name": " SDRPT 3 - WebSDR Air Band ",
+    "url": "http://sdrpt.ddns.net:8074/",
+    "img": "https://www.receiverbook.de/images/60563dcbf78ef1e66a45ba7f/avatar.png"
+  },
+  {
+    "name": " OpenWebRX B VHF/UHF de Poitiers 86 (Smarves)",
+    "url": "http://noradio86.ddns.net:8074/",
+    "img": "https://www.receiverbook.de/images/63e166b0d299cfbaab35160a/avatar.png"
+  },
+  {
+    "name": " Aigle CH - VHF/UHF - SDRx.io",
+    "url": "http://magnopro.ddns.net:8073/",
+    "img": "https://www.receiverbook.de/images/654c6c80d99ba50da669361a/avatar.png"
+  },
+  {
+    "name": " Aigle CH - LF/MF/HF - SDRx.io",
+    "url": "http://aigle1.sdrx.io:8074/",
+    "img": "https://www.receiverbook.de/images/654c6c80d99ba50da669361a/avatar.png"
+  },
+  {
+    "name": " [DNX833] OWRX Server 2 RX:Diamond X-30N=>Germany NRW Kreis Recklinghausen [Server1 0-34MHz Port:8013] [Server2 2M 70cm Port 8035] [Server3 CB Port:8011] [Server4 Testzwecke Port8012] / JO31LQ RE.NRW.DE.WWW incl. Free Videochat https://html5-chat.com/chat/36711/61098962ec079 und Telegram.",
+    "url": "http://dnx833.ramoip.de:8035/",
+    "img": "https://www.receiverbook.de/images/648628edd99ba599d3682401/avatar.png"
+  },
+  {
+    "name": " [DNX833] OWRX Server 3 RX:Sigma2011 SkipMaster 5/8=>Germany NRW Kreis Recklinghausen [Server1 0-34MHz Port:8013] [Server2 2M 70cm Port 8035] [Server3 CB Port:8011] [Server4 Testzwecke Port8012] / JO31LQ RE.NRW.DE.WWW incl. Free Videochat https://html5-chat.com/chat/36711/61098962ec079 und Telegram.",
+    "url": "http://dnx833.ramoip.de:8011/",
+    "img": "https://www.receiverbook.de/images/648628edd99ba599d3682401/avatar.png"
+  },
+  {
+    "name": " [DNX833] OWRX Server 1 RX:MLA30+=>Germany NRW Kreis Recklinghausen [Server1 0-34MHz Port:8013] [Server2 2M 70cm Port 8035] [Server3 CB Port:8011] / JO31LQ RE.NRW.DE.WWW incl. Free Videochat https://html5-chat.com/chat/36711/61098962ec079 und Telegram.",
+    "url": "http://dnx833.ramoip.de:8013/",
+    "img": "https://www.receiverbook.de/images/648628edd99ba599d3682401/avatar.png"
+  },
+  {
+    "name": " [DNX833] OWRX Server 4 RX:Diamond X-7000=>Germany NRW Kreis Recklinghausen Germany NRW Kreis Recklinghausen [Server1 0-50MHz http://dnx833.ramoip.de:8013] [Server2 2M 70cm http://dnx833.ramoip.de:8035] [Server3 CB http://dnx833.ramoip.de:8011] / JO31LQ RE.NRW.DE.WWW incl. Free Videochat https://html5-chat.com/chat/36711/61098962ec079 und Telegram.",
+    "url": "http://dnx833.ramoip.de:8012/",
+    "img": "https://www.receiverbook.de/images/648628edd99ba599d3682401/avatar.png"
+  },
+  {
+    "name": " |N3EDS|OWRX+|1 of 2| AirSpy HF+, G5RV",
+    "url": "http://24.154.39.139:8046/",
+    "img": "https://www.receiverbook.de/static/img/openwebrx-avatar.png"
+  },
+  {
+    "name": " |N3EDS|OWRX+|2 of 2| Blog V4, NooElec Nano 3, G5RV",
+    "url": "http://24.154.39.139:8047/",
+    "img": "https://www.receiverbook.de/static/img/openwebrx-avatar.png"
+  },
+  {
+    "name": " [OH3AC x OH3CYT] Lahti Finland",
+    "url": "https://oh3ac.oh3cyt.com/",
+    "img": "https://www.receiverbook.de/images/66e3e9e405c2b8493833fd4b/avatar.png"
+  }
+  ]

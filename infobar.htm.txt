@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SW_RadioListener Infobar</title>
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+            }
+
+            #main {
+                font-family: 'Cantarell';
+            }
+
+            #MSKTime, #dateMSK, #clockUTC, #desc1, #desc2, #desc3, #desc4, #otherText, #shortwaveStuff, #dateUTC, #socialText, #socialImg, #faq, #timer, #clockMSK, #UTCTime, #MSKTime {
+                z-index: 100;
+                position: absolute;
+                color: white;
+                font-size: 42px;
+                font-weight: bold;
+            }
+
+            #clockUTC { left: 230px; top: 80px; }
+            #dateUTC { left: 230px; top: 40px; }
+            #UTCTime { left: 20px; top: 10px; font-size: 75px; }
+
+            #clockMSK { left: 230px; top: 210px; }
+            #dateMSK { left: 230px; top: 170px; }
+            #MSKTime { left: 20px; top: 150px; font-size: 75px; }
+
+            #desc1 { left: 20px; top: 300px; font-size: 45px; }
+            #desc2 { left: 20px; top: 345px; font-size: 45px; }
+            #desc3 { left: 20px; top: 390px; font-size: 45px; }
+            #desc4 { left: 20px; top: 435px; font-size: 45px; }
+
+            #otherText { left: 110px; top: 780px; font-size: 70px; }
+            #timer { left: 20px; top: 650px; font-size: 30px; }
+
+            #socialImg { left: 30px; top: 975px; font-size: 50px; }
+            #socialText { left: 50px; top: 935px; font-size: 50px; }
+
+            #faq { left: 10px; top: 1035px; font-size: 20.5px; }
+
+            @keyframes fade {
+                0%   { opacity: 1; }
+                100% { opacity: 0; }
+            }
+            #socialText, #socialImg {
+                animation-name: fade;
+                animation-duration: 0.5s;
+                animation-timing-function: cubic-bezier(1,0,0,1);
+            }
+            #socialText, #socialImg { animation-direction: reverse;  }
+        </style>
+
+        <div id="main">  
+            <img src="thing.png">
+            <h1 id="clockUTC">--:--:-- UTC</h1>
+            <h1 id="clockMSK">--:--:-- MSK</h1>
+            <h1 id="UTCTime">UTC</h1>
+            <h1 id="MSKTime">MSK</h1>
+            <h1 id="dateMSK"></h1>
+            <h1 id="desc1"><img src="https://www.hamqsl.com/solar101vhf.php" height="200px"></a></h1>
+            <h1 id="desc2"><br><br><br>KeamsOS AutoReload v4.1</h1>
+            <h1 id="desc3" id="station"><br><br><br><br>XF Fader 2 Livestream 🔴</h1>
+            <h1 id="desc4"></h1>
+            <h1 id="otherText">Subscribe!</h1>
+            <h1 id="dateUTC"></h1>
+            <h1 id="timer"></h1>
+            <h1 id="thanks"></h1>
+            <h1 id="socialText" style="color: #FE0000;">Loading infobar...</h1>
+            <h1 id="faq">Infobar by @ShortwaveStuff, inspired by The SWL Channel</h1>
+        </div>
+
+        <div class="devmenu" hidden>
+            <input id="textInput" value="Station Name,n">
+            <button onclick="setText(document.getElementById('textInput').value, 0)">Set Properties to Text 1</button>
+            <button onclick="setText(document.getElementById('textInput').value, 1)">Set Properties to Text 2</button>
+            <button onclick="setTimerToText()">Trigger Timer</button>
+            <input id="presetNumber" value="0">
+            <button onclick="usePreset(document.getElementById('presetNumber').value)">Use Preset</button>
+        </div>
+        
+        <script>
+            const presets = [
+                "The Goose,n|4310/3243 kHz,50px,120px,810px",
+                "The Pip,n|5448/3756 kHz,50px,120px,810px",
+                "The Sq. Whl.,n|5367/3363.5 kHz,48px,110px,830px",
+                "UVB-76,4625 kHz,48px,110px"
+            ];
+            const socialsList = [
+                "yt,Join my discord server",
+                "yt,Discord server in chat,#FE0000",
+                "yt,Website: Signabroam",
+                "yt,@MirossOffYT Official,#FE0000",
+                "yt,XF Livestream,#FE0000",
+                "yt,FAQ in description"
+            ];
+            var currentSocial = 4;
+            const donators = ["NaN"];
+            var currentDonator = 0;
+
+            function usePreset(presetNumber) {
+                const splitting = presets[presetNumber].split('|');
+                setText(splitting[0], 0);
+                setText(splitting[1], 1);
+            }
+
+            function setText(text, textNum) {
+                const elements = ["station", "otherText"];
+                const properties = text.split(',');
+                document.getElementById(elements[textNum]).innerHTML = properties[0];
+                if (properties[1] != "n" && properties[1] != "no")
+                {
+                    document.getElementById(elements[textNum]).style.fontSize = properties[1];
+                    document.getElementById(elements[textNum]).style.left = properties[2];
+                    document.getElementById(elements[textNum]).style.top = properties[3];
+                }
+            }
+
+            // Thanks to ch4
+            function updateClocks() {
+                const Weekdays = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
+                const dateUTC = new Date();
+                const dateMSK = new Date(dateUTC.getTime() + 3 * 60 * 60 * 1000);
+
+                document.getElementById("clockUTC").innerHTML = dateUTC.toISOString().slice(11, 19);
+                document.getElementById("dateUTC").innerHTML = `${Weekdays[dateUTC.getUTCDay()]} ${dateUTC.toISOString().slice(0, 10)}`;
+
+                document.getElementById("clockMSK").innerHTML = dateMSK.toISOString().slice(11, 19);
+                document.getElementById("dateMSK").innerHTML = `${Weekdays[dateMSK.getUTCDay()]} ${dateMSK.toISOString().slice(0, 10)}`;
+            }
+
+            function setTimerToText(howManyMins) {
+                var timeLeftSecs = 5 * 60; // 10 minutes
+
+                setInterval(() => {
+                    timeLeftSecs -= 0.1;
+                    document.getElementById("otherText").innerHTML = "Left: " + Math.floor(timeLeftSecs);
+                }, 100);
+            }
+
+            function updateSocials() {
+                currentSocial++;
+                if (currentSocial >= socialsList.length) currentSocial = 0;
+
+                const newValues = socialsList[currentSocial].split(',');
+                var funnyElement = document.getElementById("socialText");
+                var funnyImageAA = document.getElementById("socialImg" );
+
+                funnyElement.innerText = newValues[1];
+                funnyElement.style.color = newValues[2];
+                funnyImageAA.src = newValues[0] + ".png";
+            }
+            function updateDonators() {
+                currentDonator++;
+                if (currentDonator >= donators.length) currentDonator = 0;
+
+                const newValue = donators[currentDonator]
+                var funnyElement = document.getElementById("thanks");
+
+                funnyElement.innerText = ""
+            }
+
+            setInterval(updateSocials, 6000);
+            setInterval(updateDonators, 3000);
+            setInterval(updateClocks, 500);
+            updateClocks();
+        </script>
+        <script>
+    function reloadImage() {
+        const imgElement = document.querySelector("h1 img");
+        const currentSrc = imgElement.src;
+        imgElement.src = currentSrc + '?t=' + new Date().getTime(); // Ajoute un timestamp pour éviter la mise en cache
+    }
+
+    setInterval(reloadImage, 60000); // 10 minutes = 600000 ms
+</script>
+    </head>
+</html>

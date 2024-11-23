@@ -1,0 +1,140 @@
+<title>Admin223 › Signabroam</title>
+<meta property="og:title" content="Signabroam admin223">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 20px;
+    color: #333;
+  }
+
+  input, button, textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+  }
+
+  input:focus, textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+
+  button {
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 100px;
+  }
+
+  #messages {
+    margin-top: 20px;
+  }
+
+  .message {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+<input type="text" id="frequencyInput" placeholder="Frequency (required)">
+<input type="text" id="titleInput" placeholder="Title (required)">
+<textarea id="contentInput" placeholder="Content (required)"></textarea>
+<input type="text" id="linkInput" placeholder="Link (optional) (link to audio file or text source)">
+<button onclick="sendMessage()">Send</button>
+
+<!-- Section to display retrieved messages -->
+<div id="messages"></div>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBiwCxX52J4bF7iYN8V7Jsm1TeJ0P8U27U",
+        authDomain: "uvb-76.firebaseapp.com",
+        databaseURL: "https://uvb-76-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "uvb-76",
+        storageBucket: "uvb-76.appspot.com",
+        messagingSenderId: "1056404416263",
+        appId: "1:1056404416263:web:d4430ecbdefde9119507a2"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const messagesRef = ref(db, 'messages');
+
+    // Function to send a message
+    window.sendMessage = function() {
+        const frequency = document.getElementById('frequencyInput').value;
+        const title = document.getElementById('titleInput').value;
+        const content = document.getElementById('contentInput').value;
+        const link = document.getElementById('linkInput').value;
+
+        if (!frequency || !title || !content) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        // Get the current date and time
+        const now = new Date();
+        const formattedDate = `${String(now.getMonth()+1).padStart(2, '0')}:${String(now.getDate()).padStart(2, '0')}:${now.getFullYear().toString().slice(-2)} - ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+
+        // Format the entry as requested
+        const entry = `[${formattedDate}] at ${frequency}\n${title}\n${content}\n${link ? link : ''}`;
+
+        // Send the data to Firebase
+        push(messagesRef, {
+            entry: entry
+        });
+
+        // Reset the input fields after sending
+        document.getElementById('frequencyInput').value = '';
+        document.getElementById('titleInput').value = '';
+        document.getElementById('contentInput').value = '';
+        document.getElementById('linkInput').value = '';
+    };
+
+    // Function to display messages from Firebase
+    onChildAdded(messagesRef, function(snapshot) {
+        const messageData = snapshot.val();
+        const entry = messageData.entry;
+
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message';
+        messageDiv.textContent = entry;
+
+        document.getElementById('messages').appendChild(messageDiv);
+    });
+
+    // Auto-resizing textarea
+    const textarea = document.getElementById('contentInput');
+    textarea.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+    });
+</script>

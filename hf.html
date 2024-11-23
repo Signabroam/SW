@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>KeamsOS Autoreload "UVB-76" Best 
+    SDR</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        #reloadText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00FF00; /* Couleur verte lumineuse pour meilleure visibilité */
+            font-size: 3rem;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            z-index: 1; /* Texte en arrière-plan */
+            opacity: 0.8; /* Opacité augmentée pour meilleure visibilité */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ombre du texte pour contraster avec le fond */
+        }
+
+        #reloadInfo {
+            font-size: 1.5rem;
+            color: #FFFF00; /* Jaune vif pour le texte d'information */
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: 2; /* L'iframe est au-dessus du texte */
+        }
+    </style>
+</head>
+<body>
+
+<div id="reloadText">
+    KeamsOS AutoReload
+    <div id="reloadInfo">reloading Page</div>
+</div>
+
+<iframe id="webFrame" src=""></iframe>
+
+<script>
+    const urls = [
+        "http://www.n3kl.org/sun/noaa.html"
+    ];
+
+    const iframe = document.getElementById('webFrame');
+    const reloadText = document.getElementById('reloadText');
+    const reloadInfo = document.getElementById('reloadInfo');
+    const reloadInterval = 60000; // 30 minutes
+    let countdownTimer;
+
+    function loadRandomPage() {
+        reloadInfo.innerText = "reloading page";
+        const randomIndex = Math.floor(Math.random() * urls.length);
+        iframe.src = urls[randomIndex];
+    }
+
+    iframe.onload = function() {
+        startCountdown();
+    };
+
+    function startCountdown() {
+        let remainingTime = reloadInterval / 1000; // Convertir en secondes
+        clearInterval(countdownTimer);
+        countdownTimer = setInterval(() => {
+            remainingTime--;
+            reloadInfo.innerText = `Next reload in ${remainingTime} seconds`;
+            console.log(`${remainingTime}`);
+            if (remainingTime <= 0) {
+                clearInterval(countdownTimer);
+                loadRandomPage(); // Recharger la page à la fin du compte à rebours
+            }
+        }, 1000); // Décompte chaque seconde
+    }
+
+    loadRandomPage();
+    setInterval(loadRandomPage, reloadInterval);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<style>
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .left-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .loader {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    margin-right: 20px;
+  }
+
+  .loader svg.loader-spinner {
+    animation: rotate 0.6s linear infinite;
+    transform-origin: center;
+    width: 60px;
+    height: 60px;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    50% {
+      transform: rotate(180deg) scale(1.2); /* Simule l'augmentation de puissance */
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+
+  .loader h1 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #FF008D;
+    text-align: left;
+  }
+
+  /* Styles pour l'antenne radio et les barres de signal */
+  .signal-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+
+  .antenna-svg {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  .bar {
+    width: 8px;
+    background-color: #333;
+    margin: 2px;
+    opacity: 0.2;
+    animation: signal 1s infinite;
+  }
+
+  .bar:nth-child(1) {
+    height: 10px;
+    animation-delay: 0.1s;
+  }
+
+  .bar:nth-child(2) {
+    height: 14px;
+    animation-delay: 0.2s;
+  }
+
+  .bar:nth-child(3) {
+    height: 18px;
+    animation-delay: 0.3s;
+  }
+
+  .bar:nth-child(4) {
+    height: 22px;
+    animation-delay: 0.4s;
+  }
+
+  .bar:nth-child(5) {
+    height: 26px;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes signal {
+    0%, 100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* Animation des lignes de l'antenne */
+  .line {
+    stroke: #333;
+    stroke-width: 2;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      stroke-dashoffset: 100;
+      opacity: 0.2;
+    }
+    50% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    100% {
+      stroke-dashoffset: 100;
+      opacity: 0.2;
+    }
+  }
+
+  /* Zone pour ajouter des informations à droite */
+  .right-content {
+    width: 50%;
+    padding-left: 20px;
+  }
+
+  .right-content h2 {
+    font-size: 20px;
+    color: #FF0000;
+  }
+
+  .right-content p {
+    font-size: 16px;
+    color: #0043FF;
+  }
+  
+  body {
+    background-color: white;
+    color: #737CE5;
+  }
+</style>
+<body>
+<div class="container">
+  <!-- Contenu à gauche -->
+  <div class="left-content">
+    <div class="loader loader--style2" title="1">
+      <div class="signal-container">
+      <!-- Animation du loader (qui tourne) -->
+      <svg version="1.1" id="loader-1" class="loader-spinner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" xml:space="preserve">
+        <path fill="#000" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+          <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite" />
+        </path>
+      </svg>
+      <!-- Antenne radio animée et barres de signal -->
+          <svg class="antenna-svg" viewBox="0 0 50 50">
+          <!-- Antenne radio -->
+          <line x1="25" y1="40" x2="25" y2="10" stroke="#333" stroke-width="4"></line>
+          <circle cx="25" cy="10" r="4" fill="#333"></circle>
+      
+          <!-- Lignes de signal qui émanent de l'antenne -->
+          <line class="line" x1="10" y1="10" x2="25" y2="10"></line>
+          <line class="line" x1="25" y1="10" x2="40" y2="10"></line>
+          <line class="line" x1="5" y1="5" x2="25" y2="10"></line>
+          <line class="line" x1="25" y1="10" x2="45" y2="5"></line>
+        </svg>
+      
+        <!-- Barres de signal réseau -->
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+
+      <h1>60 Minutes Music Broadcast</h1>
+      <br>
+         <b><div class="date" id="datetime">
+        <!-- Date et Heure seront insérés ici -->
+    </div></b>
+    </div>
+  </div>
+
+  <!-- Espace à droite pour ajouter des informations -->
+  <div class="right-content">
+    <h2>Information about the stream</h2>
+    <p>Welcome to the daily 60 Minutes music broadcast
+    </body>, here you can hear one hour of musics, each day it's different musics and different type of musics to diversified the choices!<br>
+    This stream is saved but it possible that the rebroadcast is unavailable in your country due to copyright claim by countries</p>
+  </div>
+</div>
+
+<script src="time.js"></script>
+</body>

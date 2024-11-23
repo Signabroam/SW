@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>The Alarm Autoreload V4.7</title>
+    <script type="text/javascript" src="config.js"></script>
+    <script type="text/javascript" src="v4.7.js"></script>
+</head>
+
+<body style="background: black;">
+    <style>
+        #overlay {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            background: black;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        #kiwiframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .centertext {
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            bottom: 50%;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function tune(url) {
+            if (url == null) {
+                document.getElementById("kiwiframe").src = "";
+                return;
+            }
+            console.log(`loading ${url}`);
+
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("kiwiframe").src = `${url}?f=${kiwiConfig.freq}${kiwiConfig.mode}z${kiwiConfig.zoom}&pb=${kiwiConfig.startPass},${kiwiConfig.endPass}&cmap=${kiwiConfig.colormap}&vol=${kiwiConfig.volume}`;
+            setTimeout(() => { document.getElementById("overlay").style.display = "none"; }, 15 * 1000);
+        }
+
+        const kiwimapDay = initAutoreloadMap(kiwilistDay);
+        const kiwimapNight = initAutoreloadMap(kiwilistNight);
+
+        async function reload() {
+            tune(null);
+            document.getElementById("status").style.color = "green";
+            document.getElementById("status").textContent = "checking for receivers...";
+            const utcHour = new Date().getUTCHours();
+            let kiwimap = null;
+            if ((utcHour >= 5) && (utcHour < 18)) {
+                kiwimap = kiwimapDay;
+            } else {
+                kiwimap = kiwimapNight;
+            }
+
+            try {
+                const r = await getBestKiwi(config, kiwimap, reloadMinutes);
+                const url = r.url;
+                const allowedMins = r.time;
+                let rxobj = kiwimap.get(url);
+                const unixmins = Date.now() / 60000;
+                rxobj.lastused = unixmins;
+                rxobj.usetimes.push({ t: unixmins, len: allowedMins });
+                tune(url);
+                document.getElementById("status").textContent = "-";
+                setTimeout(reload, allowedMins * 60000);
+                console.log(`allowed receiver usage: ${allowedMins} minutes`);
+            } catch (e) {
+                console.log(`Error: ${e.message}`);
+                document.getElementById("status").style.color = "red";
+                document.getElementById("status").textContent = `Error: ${e.message}`;
+
+                if (fallback) {
+                    try {
+                        const r = await probeKiwi(fallbackUrl, config.timeout);
+                        if (r.usage < 1) {
+                            tune(fallbackUrl);
+                            setTimeout(reload, fallbackReloadMinutes * 60000);
+                            return;
+                        }
+
+                    } catch (e) { }
+                }
+
+                setTimeout(reload, retryMinutes * 60000);
+            }
+        }
+
+        window.addEventListener("load", () => {
+            reload();
+        });
+    </script>
+    <iframe src="" id="kiwiframe">
+        Your browser doesn't support iframes
+    </iframe>
+    <div id="overlay">
+        <h1 class="centertext" style="color: royalblue;">
+           Loading   KiwiSDR...
+        </h1>
+    </div>
+
+    <div class="centertext">
+        <h1 style="color: blue;">KeamsOS AutoReload V4.7</h1>
+        <p style="color: red; font-size: 1.17em; font-weight: bolder;" id="status"></p>
+    </div>
+</body>
+
+</html>
