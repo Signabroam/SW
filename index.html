@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signabroam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.4">
+<meta name="title" content="Signabroam">
+<meta name="description" content="Signabroam is a full radio website for LW, MW, SW, HF, VHF, etc... Also contains a wiki!">
+<meta name="keywords" content="radio, signals, shortwave, broadcast, communication, HF, VHF, propagation">
+<meta name="author" content="Discode Studio">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Signabroam">
+<meta property="og:description" content="Signabroam is a full radio website for LW, MW, SW, HF, VHF, etc... Also contains a wiki!">
+<meta property="og:image" content="favicon.svg">
+<meta property="og:url" content="http://discode-studio.github.io/shortwave.bot/">
+<meta name="twitter:card" content="bak.png">
+<meta name="twitter:title" content="Signabroam">
+<meta name="twitter:description" content="Signabroam is a full radio website for LW, MW, SW, HF, VHF, etc... Also contains a wiki!">
+<meta name="twitter:image" content="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #101026, #1c1c3d);
+            background-image: url("bak.png");
+            color: white;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav a {
+            color: white;
+            margin-left: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+            text-align: center;
+            background: rgba(25, 25, 25, 0.5);
+            color: white;
+            border-radius: 25px;
+        }
+        .hero h2 {
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .hero a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid white;
+            font-size: 1rem;
+        }
+        .services {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 40px 0;
+        }
+        .service {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .service h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .service a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            border-bottom: 1px solid white;
+        }
+        footer {
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Styles pour la liste des messages */
+        #messages {
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .message {
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+    <script type="module" src="time.js"></script>
+<script type="module">
+                // Import the functions you need from the SDKs you need
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+                import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+                // Your web app's Firebase configuration
+                const firebaseConfig = {
+                    apiKey: "AIzaSyBiwCxX52J4bF7iYN8V7Jsm1TeJ0P8U27U",
+                    authDomain: "uvb-76.firebaseapp.com",
+                    databaseURL: "https://uvb-76-default-rtdb.europe-west1.firebasedatabase.app",
+                    projectId: "uvb-76",
+                    storageBucket: "uvb-76.appspot.com",
+                    messagingSenderId: "1056404416263",
+                    appId: "1:1056404416263:web:d4430ecbdefde9119507a2"
+                };
+
+                // Initialize Firebase
+                const app = initializeApp(firebaseConfig);
+                const db = getDatabase(app);
+                const messagesRef = ref(db, 'messages');
+
+                // Fonction pour afficher les messages depuis Firebase et scroller automatiquement
+                onChildAdded(messagesRef, function(snapshot) {
+                    const messageData = snapshot.val();
+                    const entry = messageData.entry;
+
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message';
+                    messageDiv.textContent = entry;
+
+                    document.getElementById('messages').appendChild(messageDiv);
+
+                    // Scroll automatique vers le bas
+                    const messagesDiv = document.getElementById('messages');
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                });
+            </script>
+<style>
+  .date {
+            font-family: Arial, sans-serif;
+            text-align: left;
+        }
+</style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Signabroam</h1>
+            <nav>
+                <a href="../swpedia/home.html">SWPedia</a>
+                <a href="./ksdrs.html">Receivers 2.0</a>
+                <a href="">Discord Server</a>
+                <a href="https://drive.google.com/drive/folders/1RXaz_oc7rKIlkPxo_yUOv-AWOY0Bn4Dh">Google Drive Archives</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+                 <b><div class="date" id="datetime">
+        <!-- Date et Heure seront insérés ici -->
+    </div></b>
+    <br>
+        <section class="hero">
+            <div>
+                <h2>Welcome to Signabroam!</h2>
+                <p>Signabroam is a official Fan associative made for the radio purpose.
+                <br>We are archiving, reporting things and have our own radio wiki & services</p>
+                <section class="content">
+            <h3>Last frequency update</h3>
+            <!-- Section pour afficher les messages récupérés dans une boîte défilante -->
+            <div id="messages"></div>
+        </section>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services">
+            
+            <div class="service">
+                <h3>SDR Player</h3>
+                <a href="./sdrp.html">Click here to access!</a>
+            </div>
+            <div class="service">
+                <h3>Radio Player</h3>
+                <a href="./rdplay.html">Click here to access!</a>
+            </div>
+            <div class="service">
+                <h3>Autoreloaders</h3>
+                <a href="#">Get it here!</a>
+            </div>
+            <div class="service">
+                <h3>Priyom.org</h3>
+                <a href="https://priyom.org">Click here to access!</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Discode Studio</p>
+        </footer>
+    </div>
+</body>
+</html>
