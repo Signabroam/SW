@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UVB-76 - Swpedia</title>
+    <style>
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            border-bottom: 1px solid #A2A9B1;
+            font-weight: normal;
+            color: #000000;
+            padding-bottom: 5px; /* Espacement supplémentaire sous le titre */
+        }
+        a {
+            color: #0645AD;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .infobox {
+            float: right;
+            width: 250px;
+            margin-left: 20px;
+            background-color: #F8F9FA;
+            border: 1px solid #A2A9B1;
+            padding: 10px;
+            font-size: 12px;
+            clear: both;
+            border-radius: 5px; /* Coins arrondis pour l'infobox */
+        }
+        footer {
+            margin-top: 50px;
+            font-size: 0.8em;
+            color: #54595D;
+            border-top: 1px solid #A2A9B1;
+            padding-top: 10px;
+        }
+        pre {
+            border: 1px solid dimgray;
+            background-color: lightgray;
+            border-radius: 5px;
+            margin: 5px 0; /* Espacement vertical autour des blocs pre */
+            padding: 10px;
+        }
+        .infobox img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto 10px auto;
+            border-radius: 10px;
+        }
+        details {
+            margin-bottom: 10px;
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #222;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            background-color: #333;
+        }
+
+        summary {
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #00ffcc;
+            transition: color 0.3s ease;
+            outline: none;
+        }
+
+        summary:hover {
+            color: #00ffff;
+        }
+
+        details details summary {
+            font-size: 16px;
+            color: #ffcc00;
+        }
+
+        details details summary:hover {
+            color: #ffff00;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            margin-top: 10px;
+            background-color: #000;
+        }
+        
+        iframe#list {
+          height: 50vh
+        }
+
+        /* Style des volets imbriqués */
+        details details {
+            padding-left: 20px;
+        }
+        
+        iframe.delayed-iframe {
+          border-radius: 50px;
+          width: 300px;
+          height: 200px
+        }
+        video {
+          width: 100%;
+          border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>UVB-76</h1>
+        <div class="infobox">
+            <h3>Infobox</h3>
+            <img src="https://github.com/Discode-Studio/AudioSource/blob/main/archives/s28_sample.jpg?raw=true" alt="pre-2015 buzzer">
+            <p><strong>Enigma ID:</strong> S28</p>
+            <p><strong>Frequency:</strong> 4625 kHz</p>
+            <p><strong>Nickname:</strong> The Buzzer</p>
+            <p><strong>Status:</strong> Active</p>
+            <p><strong>Type:</strong> Shortwave Numbers Station</p>
+            <p><strong>Messages type:</strong> Monolith/Morse</p>
+           <p><strong>Pre-2015 buzzer:</strong><audio src="https://github.com/Discode-Studio/AudioSource/raw/refs/heads/main/archives/s28_sample.ogg" controls style="width: 100%"></audio></p>
+        </div>
+
+        <h2>Overview</h2>
+        <p><strong>UVB-76</strong>, also known as "The Buzzer", is a shortwave radio station transmitting at 4625 kHz. 
+        It has been broadcasting since the late 1970s and is known for its mysterious buzzing sound, which occasionally 
+        includes voice messages in Russian.</p>
+
+        <h2>History</h2>
+        <p>UVB-76 first appeared in 1973 and is believed to be operated by the Russian military. It transmits a continuous 
+        buzzing sound, with interruptions for voice transmissions. These voice messages usually consist of numbers, names, 
+        or short phrases that have led to various interpretations, including speculation about its use as a numbers station 
+        for encrypted communications.</p>
+
+        <h2>Functionality</h2>
+        <p>The station's main purpose is thought to be related to military communications, although the exact nature of its 
+        transmissions remains largely unknown. The signals are known to vary in strength and clarity depending on atmospheric 
+        conditions, which can affect listeners' ability to receive the broadcasts.</p>
+
+        <h2>Anecdotes</h2>
+        <p>Listeners have reported instances where the buzzing sound has stopped abruptly, followed by voice messages that may 
+        include military call signs and coded phrases. The station has garnered a cult following among amateur radio enthusiasts, 
+        who often document their listening experiences and attempt to decode the messages.</p>
+
+        <h2>Recent Activity</h2>
+        <p>In recent years, UVB-76 has been relatively active, with numerous reported transmissions. These broadcasts often 
+        prompt discussions among the radio community regarding their implications and the potential for future military operations.</p>
+        
+        <h2>Message world record</h2>
+        <p>The Wednesday 18th September 2024, the station beated a world record of voice messages, in total 27 messages in one day recorded!</p>
+        
+        <h2>Actual livestream</h2>
+        <p>Argonn Websdr</p>
+        <audio src="http://streams.printf.cc:8000/buzzer.ogg" controls></audio>
+       <p>Priyom.org stream</p>
+        <audio src="http://stream.priyom.org:8000/buzzer" controls></audio>
+        
+        <h2>Archives</h2>
+        <p><a href="https://drive.google.com/drive/folders/1aYzOjLqbQQjXsE-dVLRVPHNYh1xeq_u1">https://drive.google.com/drive/folders/1aYzOjLqbQQjXsE-dVLRVPHNYh1xeq_u1</a></p>
+        <br>
+        <h2>Voice messages archives</h2>
+<details>
+  <summary>
+    Voice messages archives
+  </summary>
+<details>
+    <summary>Pre2010</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/pre2010"></iframe>
+</details>
+<details>
+  <summary>
+    2010
+  </summary>
+  <iframe src="https://priyom.org/military-stations/russia/the-buzzer/pre2010" frameborder="0"></iframe>
+</details>
+<details>
+  <summary>
+    2011
+  </summary>
+  <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2011" frameborder="0"></iframe>
+</details>
+<details>
+  <summary>
+    2012
+  </summary>
+  <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2012" frameborder="0"></iframe>
+</details>
+    <details>
+        <summary>2013</summary>
+        <details>
+            <summary>January</summary>
+            <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2013/january" frameborder="0"></iframe>
+        </details>
+        <details>
+          <summary>
+            March
+          </summary>
+          <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2013/march" frameborder="0"></iframe>
+        </details>
+        <details>
+          <summary>
+            September 
+          </summary>
+          <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2013/september" frameborder="0"></iframe>
+        </details>
+        <details>
+          <summary>
+            December 
+          </summary>
+          <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2013/december" frameborder="0"></iframe>
+        </details>
+    </details>
+    <details>
+  <summary>2014</summary>
+  <details>
+    <summary>January</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/january" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>February</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/february" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>March</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/march" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>April</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/april" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>May</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/may" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>June</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/june" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>July</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/july" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>August</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/august" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>September</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/september" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>October</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/october" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>November</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/november" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>December</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2014/december" frameborder="0"></iframe>
+  </details>
+</details>
+
+<details>
+  <summary>2015</summary>
+  <details>
+    <summary>January</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/january" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>February</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/february" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>March</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/march" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>April</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/april" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>May</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/may" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>June</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/june" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>July</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/july" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>August</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/august" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>September</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/september" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>October</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/october" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>November</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/november" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>December</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2015/december" frameborder="0"></iframe>
+  </details>
+</details>
+<details>
+  <summary>2016</summary>
+  <details>
+    <summary>January</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/january" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>February</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/february" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>March</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/march" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>April</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/april" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>May</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/may" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>June</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/june" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>July</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/july" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>August</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/august" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>September</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/september" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>October</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/october" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>November</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/november" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>December</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2016/december" frameborder="0"></iframe>
+  </details>
+</details>
+<details>
+  <summary>2017</summary>
+  <details>
+    <summary>January</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2017/january" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>February</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2017/february" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>March</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2017/march" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>April</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2017/april" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>May</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2017/may" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>June</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2017/june" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>July</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2017/july" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>August</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2017/august" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>September</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2017/september" frameborder="0"></iframe>
+  </details>
+</details>
+<details>
+  <summary>2018</summary>
+  <details>
+    <summary>January</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2018/january" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>February</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2018/february" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>September</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2018/september" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>October</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2018/october" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>November</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2018/november" frameborder="0"></iframe>
+  </details>
+</details>
+<details>
+  <summary>2019</summary>
+  <details>
+    <summary>February</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2019/february" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>March</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2019/march" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>April</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2019/april" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>May</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2019/may" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>June</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2019/june" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>July</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2019/july" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>September</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2019/september" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>October</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2019/october" frameborder="0"></iframe>
+  </details>
+</details>
+<details>
+  <summary>2020</summary>
+  <details>
+    <summary>January</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2020/january" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>February</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2020/february" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>March</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2020/march" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>August</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2020/august" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>September</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2020/september" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>October</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2020/october" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>November</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2020/november" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>December</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2020/december" frameborder="0"></iframe>
+  </details>
+</details>
+<details>
+  <summary>2021</summary>
+  <details>
+    <summary>January</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/january" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>February</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/february" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>March</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/march" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>April</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/april" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>May</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/may" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>June</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/june" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>July</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/july" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>August</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/august" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>September</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/september" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>October</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/october" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>November</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/november" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>December</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2021/december" frameborder="0"></iframe>
+  </details>
+</details>
+<details>
+  <summary>
+    2022
+  </summary>
+  <details>
+    <summary>
+      January
+    </summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2022/january" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>
+      February
+    </summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2022/February" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>
+      December 
+    </summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2022/december" frameborder="0"></iframe>
+  </details>
+</details>
+<details>
+  <summary>2023</summary>
+  <details>
+    <summary>January</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/january" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>February</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/february" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>March</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/march" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>April</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/april" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>May</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/may" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>June</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/june" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>July</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/july" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>August</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/august" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>September</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/september" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>October</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/october" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>November</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/november" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>December</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2023/december" frameborder="0"></iframe>
+  </details>
+</details>
+<details>
+  <summary>2024</summary>
+  <details>
+    <summary>January</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2024/january" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>February</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2024/february" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>March</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2024/march" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>April</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2024/april" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>May</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2024/may" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>June</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2024/june" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>July</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2024/july" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>August</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2024/august" frameborder="0"></iframe>
+  </details>
+  <details>
+    <summary>September</summary>
+    <iframe src="https://priyom.org/military-stations/russia/the-buzzer/2024/september" frameborder="0"></iframe>
+    <iframe src="../2024/september.htm" frameborder="0" id="list"></iframe>
+  </details>
+  <details>
+    <summary>
+      October
+    </summary>
+    <iframe src="../2024/october.htm" frameborder="0" id="list"></iframe>
+  </details>
+<details>
+  <summary>
+    November
+  </summary>
+  <iframe src="../2024/november.html" frameborder="0" id="list"></iframe>
+</details>
+</details>
+</details>
+<br>
+<h2>Audio Archives</h2>
+<h3>2010 Archives</h3>
+<iframe src="https://archive.org/download/UVB76activity" frameborder="0"></iframe>
+<h4>(Sound start after 10 seconds)</h4>
+<audio src="https://archive.org/download/BuzzerMorse6102010/buzzermorse6102010.mp3" controls></audio>
+<h3>2013 Archives</h3>
+<audio src="https://archive.org/download/201302031816zUVB76AM/2013-02-03%201816z%20UVB-76%20AM.mp3" controls></audio>
+<video src="https://archive.org/download/HM0111.530MHzU1725033113/UVB-76/Uvb-76_4625Khz_a3e_other_03-15-14_1924.mp4" controls></video>
+<h3>2014 Archives</h3>
+<audio src="https://archive.org/download/s0ShityTEhlB/s0ShityTEhlB.mp3" controls></audio>
+<h3>2015 Archives</h3>
+<audio src="https://archive.org/download/UVB76TheBuzzerWebsdrRecordingSt/UVB-76-TheBuzzer-websdr_recording_st.mp3" controls></audio>
+<h3>2016 Archives</h3>
+<h4>Breakdown</h4>
+<audio src="https://archive.org/download/UVB76TheBuzzerBreakdown25July2016/UVB-76%20-%20The%20Buzzer%20Breakdown%20-%2025%20July%202016.mp3" controls></audio>
+<h3>2018 Archives</h3>
+<audio src="https://archive.org/download/sraa-the-buzzer-uvb-76-numbers-station-may-13-2018/websdr_recording_start_2018-05-13T19_25_16Z_4625.0kHz.mp3" controls></audio>
+<h3>2021 Archives</h3>
+<audio src="https://archive.org/download/UVB762021RECORDING/%5BUVB-76%2C%20The%20Buzzer%5D%20Voice%20Message%3B%2016.%20April%202021%2C%2008-07%20UTC_144p-mc.m4a" controls></audio>
+<h3>2022 Archives</h3>
+<label for="audio">Waterfall art audio</label>
+<br />
+<audio src="https://archive.org/download/uvb-76-rc48/RC000048.mp3" controls></audio>
+<br>
+<label for="audio">Rick roll</label>
+<br>
+<audio src="https://archive.org/download/rickrolluvb76/UVB76Rick.mp3" controls></audio>
+<h4>Full +32000 Files archive</h4>
+<iframe src="https://archive.org/download/The-Buzzer-Archives" frameborder="0"></iframe>
+<h3>2023/2024 Archives</h3>
+<audio src="https://archive.org/download/HAM3000RE76/REVELAT76-B.MP3" controls></audio>
+<h3>2024 Archives</h3>
+<h4>Archives:</h4>
+
+<h4>Pirates:</h4>
+<video src="https://archive.org/download/web-sdr-160m-80m-75m-60m-40m-20m-11m-cb-radio-10m-mozilla-firefox-2024-08-21-21-11-46/WebSDR%20160m%2C%2080m%20%26%2075m%2C%2060m%2C%2040m%2C%2020m%2C%2011m%20%28CB%20radio%29%2C%2010m%20%E2%80%94%20Mozilla%20Firefox%202024-08-21%2021-11-46.mp4" controls></video>
+<br>
+<h2>Livestream Archives</h2>
+        <h3>2017 livestream archive</h3>
+<iframe class="delayed-iframe" data-src="https://web.archive.org/web/20170628063217/http://stream.priyom.org:8000/buzzer.ogg" frameborder="0"></iframe>
+<iframe class="delayed-iframe" data-src="http://web.archive.org/web/20171013181932/http://stream.priyom.org:8000/buzzer.ogg" frameborder="0"></iframe>
+
+<h3>2019 livestream archive (corrupted)</h3>
+<iframe class="delayed-iframe" data-src="http://web.archive.org/web/20190508070819/http://streams.printf.cc:8000/buzzer" frameborder="0"></iframe>
+<iframe class="delayed-iframe" data-src="http://web.archive.org/web/20190923191435/http://streams.printf.cc:8000/buzzer" frameborder="0"></iframe>
+
+<h3>2021 livestream archive</h3>
+<iframe class="delayed-iframe" data-src="http://web.archive.org/web/20211017001754/http://stream.priyom.org:8000/buzzer" frameborder="0"></iframe>
+
+<h3>2022 livestream archive</h3>
+<iframe class="delayed-iframe" data-src="http://web.archive.org/web/20221220222904/http://stream.priyom.org:8000/buzzer" frameborder="0"></iframe>
+<iframe class="delayed-iframe" data-src="http://web.archive.org/web/20221222150654/http://streams.printf.cc:8000/buzzer.ogg" frameborder="0"></iframe>
+
+<h3>2023 livestream archive</h3>
+<iframe class="delayed-iframe" data-src="http://web.archive.org/web/20230210023349/http://stream.priyom.org:8000/buzzer" frameborder="0"></iframe>
+<iframe class="delayed-iframe" data-src="http://web.archive.org/web/20230405212833/http://streams.printf.cc:8000/buzzer.ogg" frameborder="0"></iframe>
+
+<h3>2024 livestream archive</h3>
+<iframe class="delayed-iframe" data-src="http://web.archive.org/web/20240106093120/http://streams.printf.cc:8000/buzzer.ogg" frameborder="0"></iframe>
+<iframe class="delayed-iframe" data-src="http://web.archive.org/web/20240324215550/http://streams.printf.cc:8000/buzzer.ogg" frameborder="0"></iframe>
+<br>
+<h2>~ End of livestream archives ~</h2>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const iframes = document.querySelectorAll('.delayed-iframe');
+        let delay = 0;
+
+        iframes.forEach(function(iframe) {
+            setTimeout(function() {
+                iframe.src = iframe.getAttribute('data-src');
+            }, delay);
+            delay += 5000; // 5 secondes de délai entre chaque iframe
+        });
+    });
+</script>
+
+        <footer>
+            Retrieved from "<a href="https://priyom.org/military-stations/russia/the-buzzer">priyom.org/uvb-76</a>" and "<a href="index.html">Signabroam</a>"
+        </footer>
+    </div>
+
+</body>
+</html>
