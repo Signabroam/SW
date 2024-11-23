@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octobers Messages</title>
+    <style>
+        table {
+            background-color: black;
+            color: white;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+        }
+         a.video-link {
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Masquer le popup par défaut */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Style de l'iframe pour être centré */
+        .popup-content {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            height: 450px;
+            background: #000;
+        }
+
+        /* Style de la croix de fermeture */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Callsign</th>
+            <th>Message</th>
+            <th>Credits</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- 1st -->
+        <tr>
+            <td>1st</td>
+            <td>----z</td>
+            <td>НЖТИ</td>
+            <td>29155 СОРОПЫСК 5101 8306</td>
+            <td>Shortwave Stuff</td>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td>----z</td>
+            <td>НЖТИ</td>
+            <td>68670 ПЛЕДОШКАФ 9020 6368</td>
+            <td>Shortwave Stuff</td>
+        </tr>
+
+        <!-- 2nd -->
+        <tr>
+            <td>2nd</td>
+            <td>----z</td>
+            <td>НЖТИ</td>
+            <td>84650 САРДИНКА 9580 5744</td>
+            <td>Shortwave Stuff</td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            <td>0955z</td>
+            <td>НЖТИ</td>
+            <td>55645 СЕТОПИР 5891 7279</td>
+            <td>Shortwave Stuff</td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            <td>1004z</td>
+            <td>НЖТИ</td>
+            <td>99973 СПИЧОКЛОН 9784 3852</td>
+            <td>Shortwave Stuff</td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            <td>1044z</td>
+            <td>НЖТИ</td>
+            <td>89650 САРДИНКА 9580 5744</td>
+            <td>Shortwave Stuff</td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            <td>1115z</td>
+            <td>НЖТИ</td>
+            <td>21634 ЛЕСОДЕРН 6468 0733</td>
+            <td>Shortwave Stuff</td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            <td>1148z</td>
+            <td>НЖТИ</td>
+            <td>88690 ЗАТЯЖКА 0223 8893</td>
+            <td>Shortwave Stuff</td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            <td>1158z</td>
+            <td>НЖТИ</td>
+            <td>68976 БАТАЛЬОННЫЙ 3290 8709</td>
+            <td>Shortwave Stuff</td>
+        </tr>
+
+        <!-- 7th -->
+        <tr>
+            <td>7th</td>
+            <td>1042z</td>
+            <td>NZhTI</td>
+            <td>89867 RIMOROM 9901 3553</td>
+            <td>The Buzzer Channel</td>
+        </tr>
+
+        <!-- 8th -->
+        <tr>
+            <td>8th</td>
+            <td>----z</td>
+            <td>НЖТИ</td>
+            <td>89867 РИМОРОМ 9901 3553</td>
+            <td>Shortwave Stuff</td>
+        </tr>
+
+        <!-- 10th -->
+        <tr>
+            <td>10th</td>
+            <td>1101z</td>
+            <td>NZhTI</td>
+            <td>11459 FARSOGRAF 4281 5666</td>
+            <td>The Buzzer Channel</td>
+        </tr>
+
+        <!-- 17th -->
+        <tr>
+            <td>17th</td>
+            <td>0951z</td>
+            <td>NZhTI</td>
+            <td><a href="#" class="video-link" data-video-id="Yc7w9sFYogA">Inaudible</a></td>
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup-content">
+        <span class="close-button" onclick="closePopup()">&#10005;</span>
+        <iframe id="youtubeIframe" width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+</div>
+            <td>BuzzerUvb76Fan</td>
+        </tr>
+
+        <!-- 21st -->
+        <tr>
+            <td>21st</td>
+            <td>1328z</td>
+            <td>NZhTI</td>
+            <td>93970 DZhIPOVNUK 4541 3922 UKOSOTYuL' 8987 9441</td>
+            <td>The Buzzer Channel</td>
+        </tr>
+        <tr>
+          <td>24th</td>
+          <td>0947z</td>
+          <td>НЖТИ</td>
+          <td>47042 ГРЕЧИШНЫЙ 4443 7430</td>
+          <td>Shortwave Stuff</td>
+        </tr>
+  <tr>
+    <td>24th</td>
+    <td>0947z</td>
+    <td>НЖТИ</td>
+    <td>47042 ГРЕЧИШНЫЙ 4443 7430</td>
+    <td>Shortwave Stuff</td>
+  </tr>
+  <tr>
+    <td>24th</td>
+    <td>1005z</td>
+    <td>НЖТИ</td>
+    <td>84622 ДВУЯЗЫЧИЕ 1349 4148</td>
+    <td>Shortwave Stuff</td>
+  </tr>
+  <tr>
+    <td>24th</td>
+    <td>1032z</td>
+    <td>НЖТИ</td>
+    <td>91769 ЛЕЙКОЗ 3287 2445</td>
+    <td>Shortwave Stuff</td>
+  </tr>
+  <tr>
+    <td>24th</td>
+    <td>1119z</td>
+    <td>НЖТИ</td>
+    <td>98124 ИЛОВЫЙ 2357 6493</td>
+    <td>Shortwave Stuff</td>
+  </tr>
+  <tr>
+    <td>24th</td>
+    <td>1147z</td>
+    <td>НЖТИ</td>
+    <td>31987 ОБШЛАЖОК 0200 7694</td>
+    <td>Shortwave Stuff</td>
+  </tr>
+  <tr>
+    <td>24th</td>
+    <td>1312z</td>
+    <td>НЖТИ</td>
+    <td>96164 ПЕРЕБРОСКА 6241 4820</td>
+    <td>Shortwave Stuff</td>
+  </tr>
+  <tr>
+    <td>24th</td>
+    <td>1332z</td>
+    <td>НЖТИ</td>
+    <td>44264 ЗАМЕСТИТЕЛЬ 2404 2178</td>
+    <td>Shortwave Stuff</td>
+  </tr>
+  <tr>
+    <td>24th</td>
+    <td>1354z</td>
+    <td>НЖТИ</td>
+    <td>60899 МРАКОЩУП 1267 7293</td>
+    <td>Shortwave Stuff</td>
+  </tr>
+  <tr>
+    <td>30th</td>
+    <td>1227z</td>
+    <td>НЖТИ</td>
+    <td>69069 РАСТИРАНИЕ 8875 1328</td>
+    <td>The Buzzer Channel</td>
+  </tr>
+  <tr>
+    <td>30th</td>
+    <td>1238z</td>
+    <td>ТОД3</td>
+    <td>60389 БЕНЗОКРОТ 1423 2212</td>
+    <td>The Buzzer Channel</td>
+  </tr>
+  <tr>
+    <td>31st</td>
+    <td>1019z</td>
+    <td>NZhTI</td>
+    <td>33588 RODOBAJ'T 7491 2203</td>
+    <td>The Buzzer Channel</td>
+  </tr>
+    </tbody>
+</table>
+<script>
+    // Fonction pour ouvrir l'iframe YouTube
+    function openPopup(videoId) {
+        const iframe = document.getElementById('youtubeIframe');
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        document.getElementById('popupOverlay').style.display = 'flex';
+    }
+
+    // Fonction pour fermer le popup et arrêter la vidéo
+    function closePopup() {
+        const iframe = document.getElementById('youtubeIframe');
+        iframe.src = '';  // Nettoie l'iframe pour arrêter la vidéo
+        document.getElementById('popupOverlay').style.display = 'none';
+    }
+
+    // Ajouter un événement de clic pour chaque lien vidéo
+    document.querySelectorAll('.video-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const videoId = link.getAttribute('data-video-id');
+            openPopup(videoId);
+        });
+    });
+</script>
+</body>
+</html>

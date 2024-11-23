@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Septembers Messages</title>
+    <style>
+        table {
+            background-color: black;
+            color: white;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+  
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Callsign</th>
+            <th>Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>18th</td>
+            <td>0610z</td>
+            <td>НЖТИ</td>
+            <td>84096 МНЕНЬЕ 2407 1312</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>0616z</td>
+            <td>НЖТИ</td>
+            <td>16912 ОМАРОДИЕН 0616 1808</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>0737z</td>
+            <td>НЖТИ</td>
+            <td>96603 НЕЖЕНСКИЙ 0938 7147</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>0748z</td>
+            <td>НЖТИ</td>
+            <td>75002 ГЕОФИЗИКА 0850 1689</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>0750z</td>
+            <td>НЖТИ</td>
+            <td>28357 МЕТАНЬЕ 0031 5008</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>0806z</td>
+            <td>ЦЖАП</td>
+            <td>44955 БУРТОКАДР 6169 7610</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>0833z</td>
+            <td>НЖТИ</td>
+            <td>86004 ПЕКОТЮЛЬ 9210 0509</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>0926z</td>
+            <td>НЖТИ</td>
+            <td>66207 ЛОГОГНЕВ 0618 5119 АВТОСЛЕСАРЬ 0843 4289</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>0953z</td>
+            <td>НЖТИ</td>
+            <td>01326 КАФОРАК 8845 1509</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1003z</td>
+            <td>НЖТИ</td>
+            <td>22487 ПЕРЕУСТУПКА 3035 5822</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1004z</td>
+            <td>ЦЖАП</td>
+            <td>13152 БОРОДЕНКА 7151 5617</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1026z</td>
+            <td>ЦЖАП</td>
+            <td>79242 ПРОДУКЦИЯ 8526 2769</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1035z</td>
+            <td>ЦЖАП</td>
+            <td>80364 ПАКТОСТАН 8542 1387 ДЖЕМОНИЛ 3090 7669</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1037z</td>
+            <td>ЦЖАП</td>
+            <td>30300 ЗЛАКОБАК 0010 9160 АПОХРОМАТ 0013 5538</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1053z</td>
+            <td>НЖТИ</td>
+            <td>18530 ПУДОМЕЛ 1891 1709</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1131z</td>
+            <td>ЦЖАП</td>
+            <td>09844 ЛАСТОТОСТ 8112 7203</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1132z</td>
+            <td>НЖТИ</td>
+            <td>61692 БИЛЬЯРД 0626 2407</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1134z</td>
+            <td>НЖТИ</td>
+            <td>82778 РУБИНА 8218 5217</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1202z</td>
+            <td>НЖТИ</td>
+            <td>09528 КЛЕВОК 9606 1809</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1247z</td>
+            <td>НЖТИ</td>
+            <td>77095 ПОРТОДОН 6148 4273</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1315z</td>
+            <td>ЦЖАП</td>
+            <td>53804 БРИГОКОФЕ 5735 6420</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1324z</td>
+            <td>НЖТИ</td>
+            <td>29357 МЕЛАНХОЛИЯ 0010 1670 ЖРЕЦОВЕК 0013 5538</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1327z</td>
+            <td>ЦЖАП</td>
+            <td>19619 КИТОКОМ 0100 4818 МАСЛЕНЫЙ 3305 9641</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1330z</td>
+            <td>ЦЖАП</td>
+            <td>34345 ПРИВРАТНИЦА 7258 8728</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1422z</td>
+            <td>БХВС</td>
+            <td>ВМ68 ТОД3 У352 25946 76239 99931 46771 СНОБОНАРД 6456 7215</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1425z</td>
+            <td>БХВС</td>
+            <td>02291 АЭРОЗОЛЬ 6456 7215</td>
+        </tr>
+        <tr>
+            <td>18th</td>
+            <td>1426z</td>
+            <td>НЖТИ</td>
+            <td>95294 СТЕРОСКИП 4023 8122</td>
+        </tr>
+        <tr>
+          <td>18th</td>
+          <td>----z</td>
+          <td>NaN</td>
+          <td><a href="https://youtu.be/aZiujWXaREI">All the 27 voice messages</a></td>
+        </tr>
+        <tr>
+            <td>19th</td>
+            <td>1406z</td>
+            <td>НЖТИ</td>
+            <td>69371 ГАЗЕТЕНКА 2792 1821 (transcript by Sce)</td>
+        </tr>
+        <tr>
+            <td>19th</td>
+            <td>1512z</td>
+            <td>NZhTI</td>
+            <td>63209 GUSYaTNIK 7847 0176</td>
+        </tr>
+        <tr>
+            <td>19th</td>
+            <td>----z</td>
+            <td>НЖТИ</td>
+            <td>63209 ГУСЯТНИК 6847 0176</td>
+        </tr>
+        <tr>
+            <td>23th</td>
+            <td>0950z</td>
+            <td>НЖТИ</td>
+            <td>12892 ТЕГОЧЕК 9376 5693</td>
+        </tr>
+        <tr>
+            <td>23th</td>
+            <td>1109z</td>
+            <td>НЖТИ</td>
+            <td>29093 БУКОМОРФ 8137 1117</td>
+        </tr>
+        <tr>
+            <td>23th</td>
+            <td>1246z</td>
+            <td>НЖТИ</td>
+            <td>18482 РАБОТА 7820 0911</td>
+        </tr>
+        <tr>
+            <td>23th</td>
+            <td>1302z</td>
+            <td>НЖТИ</td>
+            <td>19221 ЛЕКСЕЙ 9164 5222</td>
+        </tr>
+        <tr>
+            <td>23th</td>
+            <td>1513z</td>
+            <td>НЖТИ</td>
+            <td>67062 АГЕНТ 7451 0633</td>
+        </tr>
+        <tr>
+    <td>30th</td>
+    <td>1254z</td>
+    <td>НЖТИ</td>
+    <td>88509 КЛОКОСЛОН 0560 0977</td>
+</tr>
+
+    </tbody>
+</table>
+
+</body>
+</html>
