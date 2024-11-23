@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Viewhport" content="width=device-width, initial-scale=1.0">
+    <title>Novembers Messages</title>
+    <style>
+        /* Style de la table */
+        table {
+            background-color: black;
+            color: white;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+        }
+        /* Style du lien */
+        a.video-link {
+            color: white;
+            cursor: pointer;
+        }
+        /* Masquer le popup par défaut */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Style de l'iframe pour être centré */
+        .popup-content {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            height: 450px;
+            background: #000;
+        }
+        /* Style de la croix de fermeture */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Callsign</th>
+            <th>Message</th>
+            <th>Credits</th>
+            <th>Video footage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- 1st Entry -->
+        <tr>
+            <td>3rd</td>
+            <td>1245z</td>
+            <td>ТОД3</td>
+            <td>03468 КРАТОГНОМ 5211 9366</td>
+            <td>Captured by The Buzzer Channel</td>
+            <td><a href="#" class="video-link" data-video-id="UcWKokq_Q-Y">Watch</a></td>
+        </tr>
+        <!-- 2nd Entry -->
+        <tr>
+            <td>4th</td>
+            <td>1118z</td>
+            <td>НЖТИ</td>
+            <td>82240 ПОЭТОГОРН 3816 3966</td> 
+            <td>Captured by Ipff</td>
+            <td><a href="#" class="video-link" data-video-id="Bw8OSooEnUk">Watch</a></td>
+        </tr>
+        <tr>
+            <td>4th</td>
+            <td>1643z</td>
+            <td>НЖТИ</td>
+            <td>72747 ПИОНОЛОМ 5221 5209</td>
+            <td>Captured by The Buzzer Channel</td>
+            <td><a href="#" class="video-link" data-video-id="_2-0qH-ygZA">Watch</a></td>
+        </tr>
+        <!-- 3rd Entry -->
+        <tr>
+            <td>7th</td>
+            <td>0823z</td>
+            <td>НЖТИ</td>
+            <td>53312 ПРИПАИВАНИЕ 4322 9218</td>
+            <td>Captured by The Buzzer Channel</td>
+            <td>Missing</td>
+        </tr>
+        <tr>
+            <td>7th</td>
+            <td>1702z</td>
+            <td>НЖТИ</td>
+            <td>18552 ВЕКДОШКАФ 7332 4551</td>
+            <td>Captured by Shortwave Stuff</td>
+            <td><a href="#" class="video-link" data-video-id="yJm9MA5GZh8">Watch</a></td>
+        </tr>
+        <tr>
+          <td>11th</td>
+          <td>1002z</td>
+          <td>НЖТИ</td>
+          <td>74669 КВАСОНАНТ 4016 2394</td>
+          <td>Captured by SW_RadioListener</td>
+          <td><a href="#" class="video-link" data-video-id="TPOv_S7W9ok">Watch</a></td>
+        </tr>
+        <tr>
+          <td>11th</td>
+          <td>1142z</td>
+          <td>НЖТИ</td>
+          <td>75833 МАЛОЛЮДЬЕ 0808 4717</td>
+          <td>Captured by Ipff</td>
+          <td><a href="#" class="video-link" data-video-id="2TN--EVXyg8">Watch</a></td>
+        </tr>
+        <tr>
+          <td>14th</td>
+          <td>1614z</td>
+          <td>НЖТИ</td>
+          <td>71827 БУЯНОКАФ 4530 3735</td>
+          <td>Captured by The Buzzer Channel</td>
+          <td><a href="#" class="video-link" data-video-id="gbp3Oj4cr4E">Watch</a></td>
+        </tr>
+       <tr>
+        <td>17th</td>
+        <td>1219z</td> 
+        <td>NZhTI</td> 
+        <td>45760 REZON 4275 5407</td>
+        <td>Captured by The Buzzer Channel</td>
+        <td><a href="#" class="video-link" data-video-id="HQFg6Td-CmU">Watch</a></td>
+        </tr>
+        <tr>
+    <td>21st</td>
+    <td>1114z</td>
+    <td>НЖТИ</td>
+    <td>19756 ЛОТОТРОН 6290 8777</td>
+    <td>Captured by Ipff</td>
+    <td><a href="#" class="video-link" data-video-id="OCWF-xWMcBs">Watch</a></td>
+</tr>
+<tr>
+    <td>21st</td>
+    <td>1546z</td>
+    <td>NZhTI</td>
+    <td>97060 KLAVIATURA 0226 3006</td>
+    <td>Captured by The Buzzer Channel</td>
+    <td><a href="#" class="video-link" data-video-id="VqjbwyDkWHY">Watch</a></td>
+</tr>
+    </tbody>
+</table>
+
+<!-- Popup Overlay -->
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup-content">
+        <span class="close-button" onclick="closePopup()">&#10005;</span>
+        <iframe id="youtubeIframe" width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+    // Fonction pour ouvrir l'iframe YouTube
+    function openPopup(videoId) {
+        const iframe = document.getElementById('youtubeIframe');
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        document.getElementById('popupOverlay').style.display = 'flex';
+    }
+
+    // Fonction pour fermer le popup et arrêter la vidéo
+    function closePopup() {
+        const iframe = document.getElementById('youtubeIframe');
+        iframe.src = '';  // Nettoie l'iframe pour arrêter la vidéo
+        document.getElementById('popupOverlay').style.display = 'none';
+    }
+
+    // Ajouter un événement de clic pour chaque lien vidéo
+    document.querySelectorAll('.video-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const videoId = link.getAttribute('data-video-id');
+            openPopup(videoId);
+        });
+    });
+</script>
+
+</body>
+</html>
