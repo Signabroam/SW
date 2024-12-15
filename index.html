@@ -18,7 +18,13 @@
 <meta name="twitter:title" content="Signabroam">
 <meta name="twitter:description" content="Signabroam is a full radio website for LW, MW, SW, HF, VHF, etc... Also contains a wiki!">
 <meta name="twitter:image" content="favicon.svg">
-
+<script>// Vérifier si la page est en HTTPS
+if (window.location.protocol === 'https:') {
+    // Convertir l'URL actuelle en HTTP
+    const httpUrl = window.location.href.replace('https:', 'http:');
+    // Recharger la page avec l'URL HTTP
+    window.location.replace(httpUrl);
+}</script>
     <style>
         * {
             margin: 0;
