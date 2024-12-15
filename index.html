@@ -18,6 +18,13 @@
 <meta name="twitter:title" content="Signabroam">
 <meta name="twitter:description" content="Signabroam is a full radio website for LW, MW, SW, HF, VHF, etc... Also contains a wiki!">
 <meta name="twitter:image" content="favicon.svg">
+<script>// Vérifier si la page est en HTTPS
+if (window.location.protocol === 'https:') {
+    // Convertir l'URL actuelle en HTTP
+    const httpUrl = window.location.href.replace('https:', 'http:');
+    // Recharger la page avec l'URL HTTP
+    window.location.replace(httpUrl);
+}</script>
     <style>
         * {
             margin: 0;
@@ -124,43 +131,6 @@
         }
     </style>
     <script type="module" src="time.js"></script>
-<script type="module">
-                // Import the functions you need from the SDKs you need
-                import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-                import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
-
-                // Your web app's Firebase configuration
-                const firebaseConfig = {
-                    apiKey: "AIzaSyBiwCxX52J4bF7iYN8V7Jsm1TeJ0P8U27U",
-                    authDomain: "uvb-76.firebaseapp.com",
-                    databaseURL: "https://uvb-76-default-rtdb.europe-west1.firebasedatabase.app",
-                    projectId: "uvb-76",
-                    storageBucket: "uvb-76.appspot.com",
-                    messagingSenderId: "1056404416263",
-                    appId: "1:1056404416263:web:d4430ecbdefde9119507a2"
-                };
-
-                // Initialize Firebase
-                const app = initializeApp(firebaseConfig);
-                const db = getDatabase(app);
-                const messagesRef = ref(db, 'messages');
-
-                // Fonction pour afficher les messages depuis Firebase et scroller automatiquement
-                onChildAdded(messagesRef, function(snapshot) {
-                    const messageData = snapshot.val();
-                    const entry = messageData.entry;
-
-                    const messageDiv = document.createElement('div');
-                    messageDiv.className = 'message';
-                    messageDiv.textContent = entry;
-
-                    document.getElementById('messages').appendChild(messageDiv);
-
-                    // Scroll automatique vers le bas
-                    const messagesDiv = document.getElementById('messages');
-                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                });
-            </script>
 <style>
   .date {
             font-family: Arial, sans-serif;
@@ -175,8 +145,6 @@
           
             <h1>Signabroam</h1>
             <nav>
-                <a href="../swpedia/">SWPedia</a>
-                <a href="./ksdrs.html">Receivers 2.0</a>
                 <a href="">Discord Server</a>
                 <a href="https://drive.google.com/drive/folders/1RXaz_oc7rKIlkPxo_yUOv-AWOY0Bn4Dh">Google Drive Archives</a>
             </nav>
@@ -187,45 +155,67 @@
         <!-- Date et Heure seront insérés ici -->
     </div></b>
     <br>
-        <section class="hero">
+        <section class="hero" style="overflow: clip">
             <div>
                 <h2>Welcome to Signabroam!</h2>
                 <p>Signabroam is a official Fan associative made for the radio purpose.
                 <br>We are archiving, reporting things and have our own radio wiki & services</p>
-                <section class="content">
+                <!-- section class="content">
                    <div class="alert2">
   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
   Remember: This is only a beta version, most of the functions may not work properly.
-</div>
+</div -->
 <br>
-            <h3>Last frequency update</h3>
-            <!-- Section pour afficher les messages récupérés dans une boîte défilante -->
-            <div id="messages"></div>
-            
+      <h1>Searching for a signal but you have no idea of what it could be?</h1>
+      <p>You can search with the search bar on our selections of Signal Identification websites!</p>
+      <script async src="https://cse.google.com/cse.js?cx=a02645f19272243b8">
+</script>
+<div class="gcse-search"></div>
+</div>
+      </details>
         </section>
             </div>
         </section>
 
         <!-- Services Section -->
         <section class="services">
-            
-            <div class="service">
-                <h3>SDR Player</h3>
-                <a href="./sdrp.html">Click here to access!</a>
-            </div>
-            <div class="service">
-                <h3>Radio Player</h3>
-                <a href="./rdplay.html">Click here to access!</a>
-            </div>
-            <div class="service">
-                <h3>Autoreloaders</h3>
-                <a href="#">Get it here!</a>
-            </div>
-            <div class="service">
-                <h3>Priyom.org</h3>
-                <a href="https://priyom.org">Click here to access!</a>
-            </div>
-        </section>
+    <div class="service">
+        <h3>SDR Player</h3>
+        <a href="./sdrp.html">Click here to access!</a>
+    </div>
+    <div class="service">
+        <h3>Radio Player</h3>
+        <a href="./rdplay.html">Click here to access!</a>
+    </div>
+    <div class="service">
+        <h3>Autoreloaders</h3>
+        <a href="#">Get it here! (soon)</a>
+    </div>
+    <div class="service">
+        <h3>Priyom.org</h3>
+        <a href="https://priyom.org">Click here to access!</a>
+    </div>
+    <div class="service">
+        <h3>Listen to UVB-76 in real time</h3>
+        <audio src="http://streams.printf.cc:8000/buzzer.ogg" controls style="width: 250px; height: 25px"></audio>
+    </div>
+    <div class="service">
+        <h3>Shortwave Wiki</h3>
+        <a href="../swpedia/">SWPedia</a>
+    </div>
+    <div class="service">
+        <h3>Receivers 2.0</h3>
+        <a href="./ksdrs.html">Receivers 2.0</a>
+    </div>
+    <div class="service">
+        <h3>Our Blogs</h3>
+        <a href="../blog/">Blog</a>
+    </div>
+    <div class="service">
+      <h3>FR25P3 custom sdr</h3>
+      <a href="../sdr/">FR25P3 WebSDR (soon)</a>
+    </div>
+</section>
 
         <!-- Footer -->
         <footer>
