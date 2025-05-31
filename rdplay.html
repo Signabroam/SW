@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="getout.css">
+  <link rel="stylesheet" href="rdp.css">
   <title>Radio Player</title>
 </head>
 
@@ -12,42 +12,86 @@
   <header>
         <div class="logo">
             <h1>Signabroam</h1>
+            <h4>Radio Player</h4>
         </div>
+        <br><br>
         <nav>
-            <ul>
-                <li><a href="http://websdr.org">WebSDR</a> <a href="http://rx.kiwisdr.com">KiwiSDR</a> <a href="http://openwebrx.de">OpenWebrx</a></li>
-            </ul>
-        </nav>
+                <a href="http://websdr.org/"><button class="button">WebSDR</button></a>
+                <a href="http://kiwisdr.com/public/"><button class="button">KiwiSDR</button></a>
+                <a href="https://www.receiverbook.de/?type=openwebrx"><button class="button">OpenWebRX</button></a>
+                <a href="https://sdr-list.xyz/"><button class="button">PhantomSDR</button></a>
+                <a href="https://rx-888.com/web/rx.html"><button class="button">RX888/Web-888</button></a>
+      </nav>
     </header>
     <br>
- <section class="content">
+ <section class="container">
           <h3>Radio player</h3>
-          <section class="cube">
+          <section class="card">
 <!-- Sélection de fichiers audio avec un select -->
 <div>
-  <h3>Radio doesn't work? <br>Edit the site link from https to http</h3>
     <label for="audioSelect">Select a station:</label>
     <select id="audioSelect" onchange="playAudio(this.value)">
         <option value="" disabled selected>Choose a station</option>
-        <option value="" disabled>> Shortwave & Number stations</option>
-        <option value="http://stream.priyom.org:8000/buzzer">UZB-76</option>
-        <option value="http://stream.priyom.org:8000/pip-day.ogg">The PIP Day</option>
-        <option value="http://stream.priyom.org:8000/pip-night.ogg">The PIP Night</option>
-        <option value="http://stream.priyom.org:8000/wheel-day.ogg">The Squeaky Wheel Day</option>
-        <option value="http://stream.priyom.org:8000/wheel-night.ogg">The Squeaky Wheel Night</option>
-        <option value="" disabled>> FM/ONLINE Radio</option>
-        <option value="http://manager8.streamradio.fr:1930/stream">Online Radio (FR)</option>
-        <option value="https://cast.iplayradio.net/listen/powermixfm/stream">PowerMixFM</option>
-        <option value="https://air.racyja.com/pinsk">SVOYO (RUS)</option>
-        <option value="https://air.racyja.com/racja96">Racja (BL-RUS)</option>
-        <option value="https://manager6.streamradio.fr:2735/stream">Radio Le Zoo (FR) (Take 5 seconds to load)</option>
-        <option value="https://radiouji.uji.es:8443/high.ogg">UJI</option>
-        <option value="http://rustradio.org:9000/stream.ogg">Rust (FR)</option>
-        <option value="http://radio-active.net:8000/active">Associative de l'aire toulonnaise (FR)</option>
-        <option value="http://radio.linn.co.uk:8003/autodj">Linn (Take 5 seconds to load)</option>
-        <option value="http://icecast.infini.fr:8000/mutine">Mutine (FR)</option>
-        <option value="http://stream.radios-arra.fr:8000/contactfm">ContactFM (FR)</option>
-        <option value="http://stream.radios-arra.fr:8000/fmplus">FM+ (FR)</option>
+        <optgroup label="Shortwave & Number stations">
+            <option value="http://stream.priyom.org:8000/buzzer">UZB-76</option>
+            <option value="http://stream.priyom.org:8000/pip-day.ogg" disabled>The PIP Day</option>
+            <option value="http://stream.priyom.org:8000/pip-night.ogg" disabled>The PIP Night</option>
+            <option value="http://stream.priyom.org:8000/wheel-day.ogg" disabled>The Squeaky Wheel Day</option>
+            <option value="http://stream.priyom.org:8000/wheel-night.ogg" disabled>The Squeaky Wheel Night</option>
+        </optgroup>
+        <optgroup label="Our own radio">
+            <option value="https://sapircast.caster.fm:16275/BQmgD">RadioAlien KeamsOS Icecast</option>
+            <option value="https://mirossoffyt.tail824f5b.ts.net/stream">Signabroam Audio Stream</option>
+            <option value="http://127.0.0.1:8000/stream" disabled>Local Transmission</option>
+        </optgroup>
+        <optgroup label="Radio over the world.">
+            <option value="http://manager8.streamradio.fr:1930/stream">Online Radio (FRa)</option>
+            <option value="https://cast.iplayradio.net/listen/powermixfm/stream">PowerMixFM (EN)</option>
+            <option value="https://manager6.streamradio.fr:2735/stream">Radio Le Zoo (FRa) (Take 5 seconds to load)</option>
+            <option value="https://radiouji.uji.es:8443/high.ogg">UJI (?)</option>
+            <option value="http://rustradio.org:9000/stream.ogg">Rust (FRa)</option>
+            <option value="http://radio-active.net:8000/active">Associative de l'aire toulonnaise (FRa)</option>
+            <option value="http://radio.linn.co.uk:8003/autodj">Linn (?) (Take 5 seconds to load)</option>
+            <option value="http://icecast.infini.fr:8000/mutine">Mutine (FRa)</option>
+            <option value="http://stream.radios-arra.fr:8000/contactfm">ContactFM (FRa)</option>
+            <option value="http://stream.radios-arra.fr:8000/fmplus">FM+ (FRa)</option>
+            <option value="http:\\stream3.themediasite.co.uk:8018\stream">Steel FM Scunthorpe (?)</option>
+            <option value="http:\\stream1.goq.cz:8001\radio-svit-zlin-192k">Radio SvitZlin (?)</option>
+            <option value="http:\\stream.partyhits.radio\listen\partyhits_radio\aac128.aac">Party Hits Radio (EN)</option>
+            <option value="https://audio-edge-ey5nr.ams.s.radiomast.io/73055724-1141-41e2-a69b-24a6ca96c8e7">Happy Hardcore (UK/JP)</option>
+            <option value="http://live.hostingbudget.nl:1780/stream">Radio De Frie Set Roch Setters (?)</option>
+            <option value="https://mp3.magic-radio.net/flac">Magic Radio (?)</option>
+            <option value="https://technolocos.net/listen/technolocos/radio.mp3">Technolocos (EN)</option>
+            </optgroup>
+            <optgroup label="French Radio">
+    <option value="http://stream1.evasionfm.com/Paris">Évasion FM - Paris</option>
+    <option value="http://stream1.evasionfm.com/Nord77">Évasion FM - Nord Seine-et-Marne</option>
+    <option value="http://stream1.evasionfm.com/Nord78">Évasion FM - Nord Yvelines</option>
+    <option value="http://stream1.evasionfm.com/Oise">Évasion FM - Oise</option>
+    <option value="http://stream1.evasionfm.com/Somme">Évasion FM - Somme</option>
+    <option value="http://stream1.evasionfm.com/Sud77">Évasion FM - Sud Seine-et-Marne</option>
+    <option value="http://stream1.evasionfm.com/Yvelines">Évasion FM - Sud Yvelines</option>
+    <option value="http://stream1.evasionfm.com/Essonne">Évasion FM - Essonne</option>
+    <option value="http://185.52.127.155/fr/30001/mp3_128.mp3?origine=fluxradios">NRJ France</option>
+    <option value="http://icecast.skyrock.net/s/natio_mp3_128k">Skyrock</option>
+    <option value="http://radio-contact.ice.infomaniak.ch/radio-contact-high.mp3">Radio Contact</option>
+    <option value="http://str20.creacast.com/decibel_fm">Décibel FM</option>
+    <option value="http://deltafmboulogne.ice.infomaniak.ch/deltafmboulogne-high.mp3">Delta FM - Boulogne-sur-Mer</option>
+    <option value="http://deltafmdunkerque.ice.infomaniak.ch/deltafmdunkerque-high.mp3">Delta FM - Dunkerque</option>
+    <option value="http://deltafmsaintomer.ice.infomaniak.ch/deltafmsaintomer-high.mp3">Delta FM - Saint-Omer</option>
+    <option value="http://deltafm.ice.infomaniak.ch/deltafm-90-2">Delta FM</option>
+    <option value="https://dici.ice.infomaniak.ch/dici-96.mp3">Dici Radio</option>
+    <option value="http://sv1.vestaradio.com/DivaFm">Diva FM</option>
+    <option value="http://str30.creacast.com/ecn1">ECN</option>
+    <option value="http://radioemotion.ice.infomaniak.ch/radioemotion-128.mp3">Emotion FM</option>
+    <option value="http://radiotrg.ice.infomaniak.ch/radiotrg-high.mp3">Enjoy 33</option>
+    <option value="http://213.186.61.62:8700/;stream.nsv">Eole</option>
+    <option value="http://espace.ice.infomaniak.ch/espace-192.mp3">Espace</option>
+    <option value="http://listen.radioking.com/radio/16769/stream/49487">Espace FM</option>
+    <option value="http://str0.creacast.com/estfm_hq.mp3">Est FM</option>
+    <option value="http://planetefm.ice.infomaniak.ch/planetefm-128.mp3">Planète FM 105.8 Arras</option>
+    <option value="https://manager4.streamradio.fr:1265/stream">WebTubesRadio France</option>
+</optgroup>
     </select>
 </div>
 
@@ -68,6 +112,7 @@
         </section>
         
     <script src="rdplay.js"></script>
+
 </body>
 
 </html>
