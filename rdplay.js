@@ -1,8 +1,18 @@
-let audio = new Audio();
-let currentTrack = document.getElementById("currentTrack");
-let stationName = document.getElementById("stationName");
+// --- Variables globales ---
+let audio = document.getElementById('audio');
+if (!audio) {
+    audio = document.createElement('audio');
+    audio.id = 'audio';
+    audio.autoplay = true;
+    document.body.appendChild(audio);
+}
+const currentTrack = document.getElementById("currentTrack");
+const stationNameDiv = document.getElementById("stationName");
+const stationThumb = document.getElementById('stationThumb');
+let currentStreamUrl = null;
+let statusCheckInterval = null;
 
-// Liste des stations spéciales pour le message personnalisé
+// --- Stations spéciales ---
 const specialStations = [
     "buzzer",
     "pip-day.ogg",
@@ -11,124 +21,101 @@ const specialStations = [
     "wheel-night.ogg"
 ];
 
-let currentStreamUrl = null; // Variable pour stocker l'URL du flux actuel
-let statusCheckInterval = null; // Intervalle pour vérifier les métadonnées
+// --- Lecture d'une station ---
+function playAudio(url) {
+    if (!url) return;
+    audio.src = url;
+    audio.play();
 
-// Fonction pour jouer l'audio sélectionné
-function playAudio(src) {
-    if (src) {
-        audio.src = src;
-        audio.play();
+    // Récupère l'option sélectionnée
+    const select = document.getElementById('audioSelect');
+    const selectedOption = select.options[select.selectedIndex];
+    const stationLabel = selectedOption ? selectedOption.text : url;
+    const thumb = selectedOption?.getAttribute('tmb') || 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
 
-        let stationLabel = src.split('://').pop('/').split('/').pop();
-        stationName.innerText = "Station: " + stationLabel;
+    // Affiche le thumbnail et le nom
+    stationThumb.src = thumb;
+    stationThumb.style.display = 'inline-block';
+    stationNameDiv.textContent = 'Station: ' + stationLabel;
 
-        // Vérifier si la station fait partie des stations spéciales
-        if (specialStations.some(station => src.includes(station))) {
-            currentTrack.innerText = "Currently: This is a military station extracted from SDR";
-        } else {
-            currentStreamUrl = src; // Mettre à jour l'URL du flux actuel
-            fetchIcecastMetadata(src); // Appel pour récupérer les métadonnées Icecast
-            startStatusCheck(); // Démarrer la vérification périodique des métadonnées
-        }
+    document.getElementById('bg-blur').style.backgroundImage = `url('${thumb}')`;
+
+    // Gère les métadonnées
+    if (specialStations.some(station => url.includes(station))) {
+        currentTrack.innerText = "Currently: This is a military station extracted from SDR";
+        stopStatusCheck();
+    } else {
+        currentStreamUrl = url;
+        fetchIcecastMetadata(url);
+        startStatusCheck();
     }
 }
 
-// Fonction pour régler le volume
+// --- Volume & Mute ---
 function setVolume(volume) {
     audio.volume = volume;
 }
-
-// Fonction pour activer/désactiver le mute
 function toggleMute(isMuted) {
     audio.muted = isMuted;
 }
 
-// Fonction pour interroger Icecast et récupérer les métadonnées
+// --- Métadonnées Icecast ---
 function fetchIcecastMetadata(streamUrl) {
-    // Vérifier si l'URL correspond à l'exception
+    // Cas particulier KeamsOS Icecast
     if (streamUrl.includes("sapircast.caster.fm:16275/BQmgD")) {
         fetch("https://sapircast.caster.fm:16275/status.xsl")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Custom status URL not available");
-                }
-                return response.text(); // Utiliser .text() car le fichier peut ne pas être JSON
-            })
+            .then(r => r.ok ? r.text() : Promise.reject("Custom status URL not available"))
             .then(data => {
-                // Extraire les métadonnées du fichier texte (si applicable)
-                let currentlyPlayingMatch = data.match(/<tr>\s*<td>Currently playing:<\/td>\s*<td class="streamstats">([^<]+)<\/td>\s*<\/tr>/i); // Correspondance pour "Currently playing"
-                if (currentlyPlayingMatch && currentlyPlayingMatch[1]) {
-                    currentTrack.innerText = `Currently: ${currentlyPlayingMatch[1].trim()}`;
-                } else {
-                    currentTrack.innerText = "Currently: No track information";
-                }
-                stationName.innerText = "Station: KeamsOS Icecast"; // Nom personnalisé pour cette station
+                let match = data.match(/<tr>\s*<td>Currently playing:<\/td>\s*<td class="streamstats">([^<]+)<\/td>\s*<\/tr>/i);
+                currentTrack.innerText = match && match[1]
+                    ? `Currently: ${match[1].trim()}`
+                    : "Currently: No track information";
+                stationNameDiv.innerText = "Station: KeamsOS Icecast";
             })
-            .catch(error => {
-                console.log(`Error fetching custom status: ${error.message}`);
+            .catch(() => {
                 currentTrack.innerText = "Currently: No metadata available";
-                stationName.innerText = "Station: KeamsOS Icecast"; // Toujours afficher le nom personnalisé
+                stationNameDiv.innerText = "Station: KeamsOS Icecast";
             });
-        return; // Sortir de la fonction pour éviter le traitement standard
+        return;
     }
 
+    // URLs de status classiques
     const statusUrls = [
         streamUrl.replace(/\/stream.*$/, "/status-json.xsl"),
         streamUrl.replace(/\/stream.*$/, "/status.xsl"),
         streamUrl.replace(/\/stream.*$/, "/status2.xsl")
     ];
 
-    // Fonction pour essayer les différentes URL de statut
-    function tryFetch(urls, index = 0) {
-        if (index >= urls.length) {
+    function tryFetch(urls, idx = 0) {
+        if (idx >= urls.length) {
             let filename = streamUrl.split('/').pop();
             currentTrack.innerText = `Currently: No information available about the current track (File: ${filename})`;
             return;
         }
-
-        fetch(urls[index])
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`URL not available: ${urls[index]}`);
-                }
-                return response.json();
-            })
+        fetch(urls[idx])
+            .then(r => r.ok ? r.json() : Promise.reject())
             .then(data => {
                 if (data && data.icestats && data.icestats.source) {
                     let source = Array.isArray(data.icestats.source) ? data.icestats.source[0] : data.icestats.source;
-                    if (source.title) {
-                        currentTrack.innerText = `Currently: ${source.title}`;
-                    } else {
-                        currentTrack.innerText = "Currently: No track information";
-                    }
+                    currentTrack.innerText = source.title
+                        ? `Currently: ${source.title}`
+                        : "Currently: No track information";
                 } else {
                     currentTrack.innerText = "Currently: No metadata available";
                 }
             })
-            .catch(error => {
-                console.log(`Trying next URL due to error: ${error.message}`);
-                tryFetch(urls, index + 1); // Essayer l'URL suivante en cas d'erreur
-            });
+            .catch(() => tryFetch(urls, idx + 1));
     }
-
-    tryFetch(statusUrls); // Démarrer avec la première URL de statut
+    tryFetch(statusUrls);
 }
 
-// Fonction pour démarrer la vérification périodique des métadonnées
+// --- Vérification périodique des métadonnées ---
 function startStatusCheck() {
-    if (statusCheckInterval) {
-        clearInterval(statusCheckInterval); // Arrêter tout intervalle précédent
-    }
-
+    stopStatusCheck();
     statusCheckInterval = setInterval(() => {
-        if (currentStreamUrl) {
-            fetchIcecastMetadata(currentStreamUrl); // Vérifier les métadonnées toutes les 30 secondes
-        }
-    }, 30000); // 30 secondes
+        if (currentStreamUrl) fetchIcecastMetadata(currentStreamUrl);
+    }, 30000);
 }
-
-// Fonction pour arrêter la vérification périodique des métadonnées
 function stopStatusCheck() {
     if (statusCheckInterval) {
         clearInterval(statusCheckInterval);
@@ -136,7 +123,11 @@ function stopStatusCheck() {
     }
 }
 
-// Arrêter la vérification des métadonnées lorsque l'audio est arrêté
+// --- Arrêt de la vérification quand l'audio s'arrête ---
 audio.addEventListener("ended", stopStatusCheck);
 audio.addEventListener("pause", stopStatusCheck);
 
+// --- Expose les fonctions globalement si besoin ---
+window.playAudio = playAudio;
+window.setVolume = setVolume;
+window.toggleMute = toggleMute;
