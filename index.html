@@ -14,121 +14,357 @@
 <meta property="og:description" content="Signabroam is a full radio website for LW, MW, SW, HF, VHF, etc... Also contains a wiki!">
 <meta property="og:image" content="favicon.svg">
 <meta property="og:url" content="http://discode-studio.github.io/sw/">
-<meta name="twitter:card" content="bak.png">
+<meta name="twitter:card" content="https://lh3.googleusercontent.com/S-XFVmQGRcWbdx0oNgmiB9kHNOiwahylSF5QmwtWk6bhC6CjP0G1fodplJ9rF7KAvbn9Hv9j6yafXY-pE7Wkber-wA=s800-w800-h500">
 <meta name="twitter:title" content="Signabroam">
 <meta name="twitter:description" content="Signabroam is a full radio website for LW, MW, SW, HF, VHF, etc... Also contains a wiki!">
 <meta name="twitter:image" content="favicon.svg">
+<!--<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">-->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #101026, #1c1c3d);
-            background-image: url("bak.png");
-            color: white;
-            overflow-x: hidden;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        header h1 {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        nav a {
-            color: white;
-            margin-left: 30px;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        .hero {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 70vh;
-            text-align: center;
-            background: rgba(25, 25, 25, 0.5);
-            color: white;
-            border-radius: 25px;
-        }
-        .hero h2 {
-            font-size: 3rem;
-            color: white;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-        .hero a {
-            color: white;
-            text-decoration: none;
-            border-bottom: 1px solid white;
-            font-size: 1rem;
-        }
-        .services {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            padding: 40px 0;
-        }
-        .service {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px;
-        }
-        .service h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        .service a {
-            text-decoration: none;
-            color: white;
-            font-size: 1rem;
-            border-bottom: 1px solid white;
-        }
-        footer {
-            padding: 20px 0;
-            text-align: center;
-            font-size: 0.9rem;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-        /* Styles pour la liste des messages */
-        #messages {
-            max-height: 600px;
-            overflow-y: auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        .message {
-            padding: 5px;
-            margin-bottom: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
+body {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    background: #181c23 url('https://www.transparenttextures.com/patterns/noise.png');
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1100px;
+}
+
+header {
+    background: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.5)), url('https://t4.ftcdn.net/jpg/03/86/82/73/240_F_386827376_uWOOhKGk6A4UVL5imUBt20Bh8cmODqzx.jpg');
+    border-bottom: 3px solid #3a4a5a;
+    padding: 24px 0 16px 0;
+    margin-bottom: 18px;
+    background-position: center;
+    padding: 3%;
+    border-radius: 7px;
+}
+
+header h1 {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    font-size: 2.1rem;
+    color: #fff;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+nav {
+    margin-top: 10px;
+}
+nav a {
+    color: #b3e0ff;
+    margin-right: 28px;
+    text-decoration: none;
+    font-size: 1.08rem;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 3px;
+    transition: background 0.2s, color 0.2s;
+}
+nav a:hover {
+    background: #2a3a4a;
+    color: #fff;
+}
+
+.hero {
+    background: url('https://lh3.googleusercontent.com/S-XFVmQGRcWbdx0oNgmiB9kHNOiwahylSF5QmwtWk6bhC6CjP0G1fodplJ9rF7KAvbn9Hv9j6yafXY-pE7Wkber-wA=s800-w800-h500');
+    border: 1px solid #3a4a5a;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px #0007;
+    padding: 22px 18px;
+    margin-bottom: 24px;
+}
+.hero h2 {
+    font-size: 1.3rem;
+    color: #b3e0ff;
+    margin-bottom: 8px;
+}
+.hero p {
+    font-size: 1.08rem;
+    color: #e0e0e0;
+}
+
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.service {
+    border: 1.5px solid #3a4a5a;
+    border-radius: 6px;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.5);
+    padding: 16px 12px 14px 12px;
+    color: #e0e0e0;
+    min-width: 210px;
+    max-width: 320px;
+    flex: 1 1 240px;
+    margin-bottom: 10px;
+    position: relative;
+    transition: box-shadow 0.2s, border 0.2s;
+}
+.service:hover {
+    border: 1.5px solid #b3e0ff;
+    box-shadow: 0 4px 16px #1a2a3a99;
+}
+.service h3 {
+    font-size: 1.08rem;
+    color: #b3e0ff;
+    margin-bottom: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.service a {
+    text-decoration: none;
+    color: #ffe066;
+    font-size: 1.01rem;
+    border-bottom: 1px dotted #ffe066;
+    transition: color 0.2s, border-bottom 0.2s;
+    padding: 1px 2px;
+}
+.service a:hover {
+    color: #b3e0ff;
+    border-bottom: 1px solid #b3e0ff;
+    background: #1a232b;
+}
+
+audio {
+    display: block;
+    background: #232b36;
+    border: 1.5px solid #3a4a5a;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px #0007;
+    margin: 10px auto 0 auto;
+    width: 95%;
+    max-width: 320px;
+    height: 36px;
+    filter: grayscale(0.5) drop-shadow(0 0 2px #b3e0ff);
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+audio:focus, audio:hover {
+    border: 1.5px solid #b3e0ff;
+    box-shadow: 0 4px 16px #1a2a3a99;
+}
+
+footer {
+    padding: 18px 0 10px 0;
+    text-align: center;
+    font-size: 0.97rem;
+    color: #b3e0ff;
+    border-top: 2px solid #3a4a5a;
+    margin-top: 40px;
+    background: #232b36;
+    box-shadow: 0 -2px 8px #000a;
+}
+
+.date {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    text-align: left;
+    color: #b3e0ff;
+    font-size: 1.05rem;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* Message list (if used elsewhere) */
+#messages {
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: rgba(35, 43, 54, 0.8);
+    border-radius: 8px;
+    margin-top: 20px;
+    border: 1.5px solid #3a4a5a;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+.message {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(179, 224, 255, 0.18);
+    border-radius: 6px;
+    background-color: rgba(179, 224, 255, 0.07);
+    color: #e0e0e0;
+    font-size: 0.98rem;
+}
+
+/* Custom audio player styles */
+.custom-audio {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: 1.5px solid #3a4a5a;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px #0007;
+    padding: 8px 14px;
+    margin: 10px auto 0 auto;
+    width: 75%;
+    max-width: 320px;
+    color: #b3e0ff;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    font-size: 1.05rem;
+}
+.custom-audio button {
+    background: transparent;
+    border: 1.5px solid #b3e0ff;
+    color: #b3e0ff;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px 12px;
+    transition: background 0.2s, border 0.2s;
+}
+.custom-audio button:hover {
+    background: transparent;
+    border-color: #ffe066;
+    color: #ffe066;
+}
     </style>
     <script type="module" src="time.js"></script>
 <style>
   .date {
             font-family: Arial, sans-serif;
-            text-align: left;
+            text-align: right;
         }
+</style>
+<style>
+   #sdr-player,
+#radio-player {
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://m.media-amazon.com/images/I/71n1zl9KBqL._AC_UF1000,1000_QL80_.jpg');
+    background-size: cover;
+    background-position: center;
+    transition: background 0.3s;
+}
+#radio-player {
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://www.labandefmduloiret.fr/wp-content/uploads/2024/10/web-radio.jpg');
+    background-size: cover;
+    background-position: center;
+    transition: background 0.3s;
+}
+#sdr-player:hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+        url('https://m.media-amazon.com/images/I/71n1zl9KBqL._AC_UF1000,1000_QL80_.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#radio-player:hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+        url('https://www.labandefmduloiret.fr/wp-content/uploads/2024/10/web-radio.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#rl {
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://i.redd.it/312oheb9oqs81.png');
+    background-size: cover;
+    background-position: center;
+}
+#ali {
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://cdn.images.express.co.uk/img/dynamic/151/750x445/1168650.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#uvb76 {
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://images.ecestaticos.com/s-IeB_Lqcb1NhD8qbF9ozy3I608=/0x0:794x478/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Fdc6%2F6ee%2F656%2Fdc66ee656b60f8c8fe39ec3722e9bd8a.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#swpedia {
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://contentf5.dailynewshungary.com/wp-content/uploads/2020/07/towers-radio.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#ksdrs {
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://rfsparkling.com/wp-content/uploads/2016/02/sdr_kiwi.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#blogs {
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://i.redd.it/wp20ga90ipq81.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#sdr-player:hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+        url('https://m.media-amazon.com/images/I/71n1zl9KBqL._AC_UF1000,1000_QL80_.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#radio-player:hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+        url('https://www.labandefmduloiret.fr/wp-content/uploads/2024/10/web-radio.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#rl:hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+        url('https://i.redd.it/312oheb9oqs81.png');
+    background-size: cover;
+    background-position: center;
+}
+#ali:hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+        url('https://cdn.images.express.co.uk/img/dynamic/151/750x445/1168650.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#uvb76:hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+        url('https://images.ecestaticos.com/s-IeB_Lqcb1NhD8qbF9ozy3I608=/0x0:794x478/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Fdc6%2F6ee%2F656%2Fdc66ee656b60f8c8fe39ec3722e9bd8a.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#swpedia:hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+        url('https://contentf5.dailynewshungary.com/wp-content/uploads/2020/07/towers-radio.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#ksdrs:hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+        url('https://rfsparkling.com/wp-content/uploads/2016/02/sdr_kiwi.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#blogs:hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+        url('https://i.redd.it/wp20ga90ipq81.jpg');
+    background-size: cover;
+    background-position: center;
+}
 </style>
 </head>
 <body>
@@ -140,12 +376,9 @@
             <nav>
                 <a href="">Discord Server</a>
                 <a href="https://drive.google.com/drive/folders/1RXaz_oc7rKIlkPxo_yUOv-AWOY0Bn4Dh">Google Drive Archives</a>
+                <b><div class="date" id="datetime"></div>
             </nav>
         </header>
-
-        <!-- Hero Section -->
-                 <b><div class="date" id="datetime">
-        <!-- Date et Heure seront insérés ici -->
     </div></b>
     <br>
         <section class="hero" style="overflow: clip">
@@ -153,17 +386,6 @@
                 <h2>Welcome to Signabroam!</h2>
                 <p>Signabroam is a official Fan associative made for the radio purpose.
                 <br>We are archiving, reporting things and have our own radio wiki & services</p>
-                <!-- section class="content">
-                   <div class="alert2">
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-  Remember: This is only a beta version, most of the functions may not work properly.
-</div -->
-<br>
-      <h1>Searching for a signal but you have no idea of what it could be?</h1>
-      <p>You can search with the search bar on our selections of Signal Identification websites!</p>
-      <script async src="https://cse.google.com/cse.js?cx=a02645f19272243b8">
-</script>
-<div class="gcse-search"></div>
 </div>
       </details>
         </section>
@@ -172,41 +394,37 @@
 
         <!-- Services Section -->
         <section class="services">
-    <div class="service">
+    <div class="service" id="sdr-player">
         <h3>SDR Player</h3>
         <a href="./sdrp.html">Click here to access!</a>
     </div>
-    <div class="service">
+    <div class="service" id="radio-player">
         <h3>Radio Player</h3>
         <a href="./rdplay.html">Click here to access!</a>
     </div>
-    <div class="service">
+    <div class="service" id="rl">
         <h3>Autoreloaders</h3>
         <a href="reloaders.html">Get it here!</a>
     </div>
-    <div class="service">
+    <div class="service" id="ali">
         <h3>Radio Alien (new affiliated website)</h3>
         <a href="http://alisdr.duckdns.org">Click here to access!</a>
     </div>
-    <div class="service">
+    <div class="service" id="uvb76">
         <h3>Listen to UVB-76 in real time</h3>
-        <audio src="http://streams.printf.cc:8000/buzzer.ogg" controls style="width: 250px; height: 25px"></audio>
+        <h3><a href="http://websdr.printf.cc:8901/?tune=4625">Listen Now</a></h3>
     </div>
-    <div class="service">
+    <div class="service" id="swpedia">
         <h3>Shortwave Wiki</h3>
         <a href="http://swpedia.duckdns.org">SWPedia</a>
     </div>
-    <div class="service">
+    <div class="service" id="ksdrs">
         <h3>Receivers 2.0</h3>
         <a href="./ksdrs.html">Receivers 2.0</a>
     </div>
-    <div class="service">
+    <div class="service" id="blogs">
         <h3>Our Blogs</h3>
-        <a href="../blog/">Blog</a>
-    </div>
-    <div class="service">
-      <h3>F5430SWL's SDR</h3>
-      <a href="http://peronne-websdr.duckdns.org">F5430SWL WebSDR (soon)</a>
+        <a href="http://blog.signabroam.ovh">Discover Here!</a>
     </div>
 </section>
 
@@ -215,5 +433,67 @@
             <p>&copy; 2025 Discode Studio</p>
         </footer>
     </div>
+
+    <!-- Hidden background mode switch -->
+<button id="bg-switch" title="Toggle Feldup Mode" style="position:fixed;bottom:12px;right:12px;opacity:0.15;z-index:999;background:#232b36;color:#ffe066;border:1.5px solid #3a4a5a;border-radius:6px;padding:6px 14px;cursor:pointer;transition:opacity 0.2s;">
+    Mode Feldup
+</button>
+
+    <script>
+        // Custom audio player for UVB-76
+const playPauseButton = document.getElementById('playpause');
+const statusText = document.getElementById('status');
+const uvb76Audio = document.getElementById('uvb76');
+
+let isPlaying = false;
+
+playPauseButton.addEventListener('click', () => {
+    if (isPlaying) {
+        uvb76Audio.pause();
+        playPauseButton.innerHTML = '▶️';
+        statusText.innerText = 'Stopped';
+    } else {
+        uvb76Audio.play();
+        playPauseButton.innerHTML = '⏸️';
+        statusText.innerText = 'Playing';
+    }
+    isPlaying = !isPlaying;
+});
+
+// Optional: Update button and status on audio end
+uvb76Audio.addEventListener('ended', () => {
+    playPauseButton.innerHTML = '▶️';
+    statusText.innerText = 'Stopped';
+    isPlaying = false;
+});
+    </script>
+<script>
+const bgSwitch = document.getElementById('bg-switch');
+let feldupMode = false;
+
+bgSwitch.addEventListener('mouseenter', () => bgSwitch.style.opacity = '1');
+bgSwitch.addEventListener('mouseleave', () => bgSwitch.style.opacity = '0.15');
+
+bgSwitch.addEventListener('click', () => {
+    feldupMode = !feldupMode;
+    if (feldupMode) {
+        document.body.style.background = "#181c23 url('https://ds.static.rtbf.be/article/image/1920x1080/c/c/7/e61c646c11d257f1e6a8b128b499fd38-1710318567.jpg')";
+        document.body.classList.add('feldup-mode');
+        bgSwitch.textContent = "Mode Normal";
+    } else {
+        document.body.style.background = "#181c23 url('https://www.transparenttextures.com/patterns/noise.png')";
+        document.body.classList.remove('feldup-mode');
+        bgSwitch.textContent = "Mode Feldup";
+    }
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+});
+</script>
+<style>
+/* Feldup Mode: Remove all background images except body */
+.feldup-mode *:not(body) {
+    background-image: none !important;
+}
+</style>
 </body>
 </html>
