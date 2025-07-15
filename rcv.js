@@ -3,7 +3,7 @@ let kiwiData = [];
         let openWebRXData = [];
 
         async function fetchKiwiSDR() {
-            const response = await fetch('http://kiwisdr.com/public/');
+            const response = await fetch('http://kiwisdr.com/.public/');
             const data = await response.text();
             const parser = new DOMParser();
             const doc = parser.parseFromString(data, 'text/html');
