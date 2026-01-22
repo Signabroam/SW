@@ -1,277 +1,373 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="getout.css">
-  <link rel="stylesheet" href="alert.css">
-  <title>Radio Player</title>
-  <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/site.webmanifest" />
+  <title>Signabroam - Radio Player</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 90vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px 30px;
+      border-bottom: 3px solid #5568d3;
+    }
+
+    header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .toolbar {
+      background: #f8f9fa;
+      padding: 15px 30px;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    select {
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      background: white;
+      cursor: pointer;
+      flex: 1;
+      min-width: 200px;
+      transition: border-color 0.3s;
+    }
+
+    select:hover,
+    select:focus {
+      border-color: #667eea;
+      outline: none;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      padding: 10px 15px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .content {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .iframe-container {
+      width: 100%;
+      flex: 1;
+      border: none;
+      overflow: hidden;
+    }
+
+    .iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .chatbox-section {
+      background: #f8f9fa;
+      border-top: 1px solid #e0e0e0;
+      padding: 20px 30px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .chatbox-section h3 {
+      margin-bottom: 15px;
+      color: #333;
+      font-size: 16px;
+    }
+
+    #message {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 15px;
+      max-height: 120px;
+      overflow-y: auto;
+      min-height: 40px;
+      font-size: 13px;
+    }
+
+    .message-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .message-item:last-child {
+      border-bottom: none;
+    }
+
+    .message-callsign {
+      font-weight: 700;
+      color: #667eea;
+      margin-right: 8px;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .input-group input {
+      flex: 1;
+      padding: 10px 12px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 13px;
+      transition: border-color 0.3s;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    #send-button {
+      padding: 10px 20px;
+      min-width: 100px;
+    }
+
+    .alert {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      color: #856404;
+      padding: 12px 15px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .closebtn {
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffc107;
+    }
+
+    .closebtn:hover {
+      color: #d39e00;
+    }
+
+    @media (max-width: 768px) {
+      .toolbar {
+        flex-direction: column;
+      }
+
+      select {
+        min-width: unset;
+      }
+
+      .controls {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
 </head>
-<script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-        import { getDatabase, ref, push, set, onChildAdded } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyCyqBx_12bGJvusjqkeB7ERRQ-AdEHPi5Q",
-            authDomain: "signabroam-onuser.firebaseapp.com",
-            databaseURL: "https://signabroam-onuser-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "signabroam-onuser",
-            storageBucket: "signabroam-onuser.appspot.com",
-            messagingSenderId: "825281231900",
-            appId: "1:825281231900:web:d9658c066f636b2977f3d9",
-            measurementId: "G-FK72VS3X9N"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-
-        // References
-        const messagesRef = ref(database, 'message');
-        const messagesDiv = document.getElementById('message');
-        const messageInput = document.getElementById('message-input');
-        const callsignInput = document.getElementById('callsign-input');
-        const sendButton = document.getElementById('send-button');
-
-        // Send message
-        sendButton.addEventListener('click', () => {
-            const message = messageInput.value.trim();
-            const callsign = callsignInput.value.trim();
-            if (message && callsign) {
-                const newMessageRef = push(messagesRef);
-                set(newMessageRef, { text: message, callsign: callsign });
-                messageInput.value = '';
-                callsignInput.value = '';
-            } else {
-                alert('Please enter both a callsign and a message.');
-            }
-        });
-
-        // Listen for new messages
-        onChildAdded(messagesRef, (snapshot) => {
-            const message = snapshot.val();
-            const messageDiv = document.createElement('div');
-            messageDiv.textContent = `${message.callsign}: ${message.text}`;
-            messagesDiv.appendChild(messageDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to latest message
-            
-            localStorage.setItem('message', messagesDiv.value);
-        });
-    </script>
-<style>
-        /* Conteneur de l'iframe */
-        .iframe-container {
-            width: 100%; /* Adapter à la taille du parent */
-            height: 666px; /* Hauteur de l'iframe */
-            overflow: hidden; /* Masquer les débordements */
-            border: none; /* Pas de bordure */;
-        }
-
-        /* Appliquer un zoom à l'iframe */
-        .iframe-container iframe {
-            width: 200%; /* Augmenter la taille initiale de l'iframe */
-            height: 200%; /* Augmenter la hauteur pour éviter les débordements */
-            transform: scale(0.5); /* Appliquer le zoom */
-            transform-origin: 0 0; /* Garder le coin supérieur gauche comme point de référence */
-            border: none; /* Pas de bordure */
-        }
-        
-    </style>
-    <style>
-  .controls button {
-   background-color: transparent;
-   border: none;
-   border-radius: 300px;
-   padding: 5px;
-   color: black;
-  }
-  
-  .controls img {
-    max-height: 30px;
-    max-width: 30px;
-  }
-</style>
 <body>
-  <header>
-        <div class="logo">
-            <h1>Signabroam</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="http://websdr.org">WebSDR</a> <a href="http://rx.kiwisdr.com">KiwiSDR</a> <a href="http://openwebrx.de">OpenWebrx</a></li>
-            </ul>
-        </nav>
+  <div class="container">
+    <header>
+      <h1>🌍 Signabroam</h1>
     </header>
-    <br>
-<style>
-body {
-  font-family: Arial
-}
 
-* {
-  box-sizing: border-box;
-}
+    <div class="toolbar">
+      <select id="siteSelector" onchange="changeIframeURL()">
+        <option value="about:blank">-- Sélectionner un SDR --</option>
+        <option value="" disabled>▸ WebSDR</option>
+        <option value="http://websdr.ewi.utwente.nl:8901/">uTwente SDR</option>
+        <option value="http://websdr.78dx.ru:8901/">Saint-Petersburg SDR</option>
+        <option value="" disabled>▸ KiwiSDR</option>
+        <option value="http://kiwi-kuo.aprs.fi:8073/">Kuopio aprs.fi</option>
+        <option value="http://81.166.116.237:8073/">Tjelta Norway</option>
+        <option value="https://khv.swl.su/">RussiaSWL</option>
+        <option value="http://fsdr.duckdns.org/">DuckDNS Hungary</option>
+        <option value="http://oh3aa.dy.fi:18073/">OH3AA (Finland)</option>
+        <option value="http://kiwi-vih.aprs.fi:8073/">Vihti (Finland)</option>
+        <option value="http://188.162.63.103:8073/">Russia (Very good for SW)</option>
+        <option value="" disabled>▸ OpenWebrx</option>
+        <option value="https://2.websdr.jestok.com/">SR4DON (Poland)</option>
+        <option value="http://jimjackii.no-ip.org/owrx/">EDDC2 (Germany)</option>
+        <option value="https://vadelma.icu/">Vadelma (Finland)</option>
+        <option value="http://noradio86.ddns.net:8074/">noradio86 (France)</option>
+        <option value="" disabled>▸ Mappers</option>
+        <option value="http://rx.linkfanel.net/">WebSDR Mapper</option>
+        <option value="https://www.receiverbook.de/map">OpenWebRX Map</option>
+        <option value="https://www.receiverbook.de/">ReceiverBook</option>
+      </select>
 
-/* The browser window */
-.container {
-  border: 3px solid #f1f1f1;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-
-/* Container for columns and the top "toolbar" */
-.row {
-  padding: 10px;
-  background: #f1f1f1;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-
-/* Create three unequal columns that floats next to each other */
-.column {
-  float: left;
-}
-
-.left {
-  width: 15%;
-}
-
-.right {
-  width: 10%;
-}
-
-.middle {
-  width: 75%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Three dots */
-.dot {
-  margin-top: 4px;
-  height: 12px;
-  width: 12px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-/* Style the input field */
-input[type=text] {
-  width: 100%;
-  border-radius: 3px;
-  border: none;
-  background-color: white;
-  margin-top: -8px;
-  height: 25px;
-  color: #666;
-  padding: 5px;
-}
-
-/* Three bars (hamburger menu) */
-.bar {
-  width: 17px;
-  height: 3px;
-  background-color: #aaa;
-  margin: 3px 0;
-  display: block;
-}
-</style>
-</head>
-<body>
-
-<div class="container">
-  <div class="row">
-    <div class="column left">
-      <span class="dot" style="background:#ED594A;"></span>
-      <span class="dot" style="background:#FDD800;"></span>
-      <span class="dot" style="background:#5AC05A;"></span>
+      <div class="controls">
+        <button onclick="zoomIn()">🔍+</button>
+        <button onclick="zoomOut()">🔍−</button>
+        <button onclick="refreshIframe()">🔄 Refresh</button>
+        <button onclick="goBack()">← Back</button>
+        <button onclick="goForward()">Forward →</button>
+      </div>
     </div>
-    <div class="column middle">
-        <select id="siteSelector" onchange="changeIframeURL()">
-            <option value="about:blank">-- Select an SDR --</option>
-            <option value="" disabled>> WebSDR</option>
-            <option value="http://websdr.ewi.utwente.nl:8901/">uTwente SDR</option>
-            <option value="http://websdr.78dx.ru:8901/">Saint-petersburg SDR</option>
-            <option value="" disabled>> KiwiSDR</option>
-            <option value="http://kiwi-kuo.aprs.fi:8073/">Kuopio aprs.fi</option>
-            <option value="http://81.166.116.237:8073/">Tjelta Norway</option>
-            <option value="https://khv.swl.su/">RussiaSWL</option>
-            <option value="http://fsdr.duckdns.org/">DuckDNS Hungary</option>
-            <option value="http://oh3aa.dy.fi:18073/">OH3AA (Finland)</option>
-            <option value="http://kiwi-vih.aprs.fi:8073/">Vihti (Finland)</option>
-            <option value="http://188.162.63.103:8073/">Russia (Very good for SW)</option>
-            <option value="" disabled>> OpenWebrx</option>
-            <option value="https://2.websdr.jestok.com/">SR4DON (OpenWebrx+)(Poland)</option>
-            <option value="http://jimjackii.no-ip.org/owrx/">EDDC2 (Germany)</option>
-            <option value="https://vadelma.icu/">Vadelma (Finland)(FM)</option>
-            <option value="http://noradio86.ddns.net:8074/">noradio86 (France) (FM/HAM)</option>
-            <option value="" disabled>Mapper (map)</option>
-            <option value="http://rx.linkfanel.net/">WebSDR (same as kiwisdr)</option>
-            <option value="http://rx.linkfanel.net/">Kiwisdr (same as websdr)</option>
-            <option value="https://www.receiverbook.de/map">OpenWebRX</option>
-            <option value="https://www.receiverbook.de/">OpenWebRX ReceiverBook</option>
-            <option value="" disabled>AutoReloaders</option>
-            <option value="uvbrl.html">UVB-76 AutoReload</option>
-            <option value="uvbrlbest.html">UVB-76 AutoReload (best sdr only)</option>
-            <option value="alarmrl.html">The Alarm AutoReload</option>
-            <option value="freerl.html">Free Frequency AutoReload</option>
-            <option value="pip.htm">The PIP</option>
-            <option value="pavlova.html">Pavlova X KeamsOS AutoReload</option>
-            <option value="" disabled>> YouTube Stream</option>
-            <option value="https://www.youtube.com/embed/8h_D2P0iqMk?si=wdQTQ08fkEwVqoDH">The SWL Channel</option>
-            <option value="https://www.youtube.com/embed/live_stream?channel=UCIVC25nLsgvCoJOkQFpvU_Q">BuzzerUvb76Fan</option>
-            <option value="" disabled>> Experimental</option>
-            <option value="http://discode-studio.github.io/shortwave.bot/">Signabroam</option>
-            <option value="sh.html">Any links</option>
-        </select>
-        
-        <div class="controls">
-            <button onclick="zoomIn()"><img src="https://raw.githubusercontent.com/jketterl/openwebrx/a9f47be96dd213127d9011de9d15ca5171e6b950/inkscape%20files/openwebrx-zoom-in.svg" alt="Zoomin"></button>
-            <button onclick="zoomOut()"><img src="https://raw.githubusercontent.com/jketterl/openwebrx/a9f47be96dd213127d9011de9d15ca5171e6b950/inkscape%20files/openwebrx-zoom-out.svg" alt="Zoomout"></button>
-            <button onclick="refreshIframe()">Refresh</button>
-            <button onclick="goBack()">Back</button>
-            <button onclick="goForward()">Forward</button>
-        </div>
 
-        <!-- Conteneur de l'iframe qui affiche la page sélectionnée -->
-        
+    <div class="content">
+      <div class="iframe-container">
+        <iframe id="myIframe" src="about:blank"></iframe>
+      </div>
     </div>
-    <div class="column right">
-      <div style="float:right">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+
+    <div class="chatbox-section">
+      <h3>💬 Chat en Direct</h3>
+      
+      <div class="alert">
+        <span>⚠️ Attention : Version Firebase dépréciée</span>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
+
+      <div id="message"></div>
+
+      <div class="input-group">
+        <input type="text" id="callsign-input" placeholder="Votre callsign...">
+        <input type="text" id="message-input" placeholder="Votre message...">
+        <button id="send-button">Envoyer</button>
       </div>
     </div>
   </div>
 
-  <div class="content">
-        <div class="iframe-container">
-            <iframe id="myIframe" src="about:blank" width="100%" height="100%"></iframe>
-        </div>
-  </div>
-</div>
-<h3>Chatbox</h3>
-          <div id="message"><div class="alert">
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-  Warning! The version of Firebase is outdated!
-</div></div>
-    <input type="text" id="callsign-input" placeholder="Enter your callsign...">
-    <input type="text" id="message-input" placeholder="Type a message...">
-    <button id="send-button">Send</button>
+  <script>
+    let zoomLevel = 1;
+    const iframe = document.getElementById('myIframe');
+    const siteSelector = document.getElementById('siteSelector');
+
+    // Charger l'iframe
+    function changeIframeURL() {
+      const selectedValue = siteSelector.value;
+      if (selectedValue && selectedValue !== 'about:blank') {
+        iframe.src = selectedValue;
+        zoomLevel = 1;
+      } else {
+        iframe.src = 'about:blank';
+      }
+    }
+
+    // Zoom in
+    function zoomIn() {
+      zoomLevel += 0.1;
+      applyZoom();
+    }
+
+    // Zoom out
+    function zoomOut() {
+      if (zoomLevel > 0.2) {
+        zoomLevel -= 0.1;
+        applyZoom();
+      }
+    }
+
+    // Appliquer le zoom
+    function applyZoom() {
+      iframe.style.transform = `scale(${zoomLevel})`;
+      iframe.style.transformOrigin = '0 0';
+      iframe.style.width = `${100 / zoomLevel}%`;
+      iframe.style.height = `${100 / zoomLevel}%`;
+    }
+
+    // Rafraîchir l'iframe
+    function refreshIframe() {
+      iframe.src = iframe.src;
+    }
+
+    // Boutons de navigation
+    function goBack() {
+      window.history.back();
+    }
+
+    function goForward() {
+      window.history.forward();
+    }
+
+    // Chat (simple demo sans Firebase)
+    const sendButton = document.getElementById('send-button');
+    const messageInput = document.getElementById('message-input');
+    const callsignInput = document.getElementById('callsign-input');
+    const messagesDiv = document.getElementById('message');
+
+    sendButton.addEventListener('click', () => {
+      const message = messageInput.value.trim();
+      const callsign = callsignInput.value.trim();
+
+      if (message && callsign) {
+        const messageItem = document.createElement('div');
+        messageItem.className = 'message-item';
+        messageItem.innerHTML = `<span class="message-callsign">${callsign}:</span> ${message}`;
+        messagesDiv.appendChild(messageItem);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+        messageInput.value = '';
+      } else {
+        alert('Veuillez entrer un callsign et un message.');
+      }
+    });
+
+    // Envoyer avec Entrée
+    messageInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendButton.click();
+    });
+  </script>
 </body>
-<script src="sdrplayer.js"></script>
 </html>
